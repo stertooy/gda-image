@@ -33,27 +33,12 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Extract metadata (tags, labels) for Docker
-        id: meta
-        uses: docker/metadata-action@v4
-        with:
-          images: |
-            ${{ github.repository }}
-            ${{ env.REGISTRY }}/${{ github.repository }}
-
-      - name: Test
-        shell: bash
-        run: |
-          echo ${{ steps.meta.outputs.tags }}
-          printf "\n\n\n"
-          echo ${{ steps.meta.outputs.labels }}
-  
           
-      #- name: Build and push Docker image
-      #  uses: docker/build-push-action@v3
-      #  with:
-      #    context: .
-      #    push: true
-      #    tags: ${{ steps.meta.outputs.tags }}
-      #    labels: ${{ steps.meta.outputs.labels }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{ github.repository }}:${{ env.BRANCH }}
+            ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.BRANCH }}

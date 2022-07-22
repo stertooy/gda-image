@@ -1,6 +1,6 @@
 # gda-image: Docker containers GAP Docker Actions
 
-This repository contains docker images with GAP and (as many as possible of) its packages pre-installed. It is a fork of [Docker](https://www.docker.com/)
+This repository contains docker images with GAP and (as many as possible of) its packages pre-installed inside a (slim) Debian environment.
 
 ## Available images
 

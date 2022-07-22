@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  BRANCH: 4.10
+  BRANCH: "4.10"
 
 jobs:
   build:

@@ -11,3 +11,9 @@ The following images are available:
 - `4.10`: contains the GAP `stable-4.10` branch, built upon Debian's `buster-slim` image;
 - `4.9`: contains the GAP `stable-4.9` branch, built upon Debian's `stretch-slim` image;
 - `tex`: contains the GAP `master` branch, as well as texlive-packages required to build manuals, built upon Debian's `bookworm-slim` image.
+
+## TODO
+
+- Make `-slim'-builds of each image, containing only packages that do not rely on external software (or packages relying on those packages, etc)
+- Let non-slim images build upon slim ones.
+- Set appropriate cron schedules

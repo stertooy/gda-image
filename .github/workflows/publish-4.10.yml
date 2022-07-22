@@ -1,4 +1,4 @@
-name: Publish GAP-4.9 package
+name: Publish GAP-4.10 package
 
 on:
   workflow_dispatch:

@@ -1,4 +1,4 @@
-name: My input is {{ inputs.BRANCH }}
+name: "My input is ${{ inputs.BRANCH }}"
 
 on:
   workflow_dispatch:
@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    name: Publish GAP Docker image
+    name: Publish GAP ${{ inputs.BRANCH }}
     runs-on: ubuntu-latest
     steps:
       - name: echoooo

@@ -34,7 +34,7 @@ RUN cd ${GAP_HOME} && \
     ./configure && \
     make
 
-# Download GAP packages, remove those with external dependencies
+# Download GAP packages
 RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
@@ -65,8 +65,8 @@ RUN cd ${GAP_HOME} && \
         Gauss-* \
         GaussForHomalg-* \
         genss-* \
-        GradedRingForHomalg-* \
         GradedModules-* \
+        GradedRingForHomalg-* \
         grape-* \
         guava-* \
         HAPcryst \

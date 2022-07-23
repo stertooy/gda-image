@@ -1,4 +1,4 @@
-# gda-image: Docker containers GAP Docker Actions
+# gda-image: GAP Docker images for use with GitHub Actions
 
 This repository contains docker images with GAP and (as many as possible of) its packages pre-installed inside a (slim) Debian environment.
 

@@ -5,18 +5,18 @@ ENV GAP_HOME=/opt/gap
 # Prerequisites
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        4ti2 \
-        libcurl4-gnutls-dev \
-        libfplll-dev \
-        libglpk-dev \
-        libmpc-dev \
-        libmpfi-dev \
-        libmpfr-dev \
-        libncurses-dev \
-        libzmq3-dev \
-        pari-gp \
-        polymake \
-        singular && \
+        4ti2                 `# 4ti2Interface` \
+        libboost-dev         `# NormalizInterface` \
+        libcurl4-gnutls-dev  `# curlInterface` \
+        libfplll-dev         `# float` \
+        libmpc-dev           `# float` \
+        libmpfi-dev          `# float` \
+        libncurses-dev       `# Browse` \
+        libxaw7-dev          `# XGAP` \
+        libzmq3-dev          `# ZeroMQInterface` \
+        pari-gp              `# Alnuth` \
+        polymake             `# polymaking` \
+        singular             `# singular` && \
     rm -rf /var/lib/apt/lists/*
 
 # Download GAP packages
@@ -24,10 +24,9 @@ RUN cd ${GAP_HOME} && \
     rm -rf pkg && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
-    cd ${GAP_HOME}/pkg
-    # && \
-    # rm -rf \
-    #     PolymakeInterface
+    cd ${GAP_HOME}/pkg && \
+    rm -rf \
+        PolymakeInterface
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

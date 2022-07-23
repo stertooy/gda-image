@@ -11,8 +11,11 @@ RUN apt-get update && \
         libfplll-dev         `# float` \
         libmpc-dev           `# float` \
         libmpfi-dev          `# float` \
+        libmpfr-dev          `# float` \
         libncurses-dev       `# Browse` \
+        libx11-dev           `# XGAP` \
         libxaw7-dev          `# XGAP` \
+        libxt-dev            `# XGAP` \
         libzmq3-dev          `# ZeroMQInterface` \
         pari-gp              `# Alnuth` \
         polymake             `# polymaking` \

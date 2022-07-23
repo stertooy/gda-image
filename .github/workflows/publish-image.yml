@@ -7,9 +7,16 @@ on:
         required: true
         type: choice
         options:
-          - "4.9-slim"
-          - "4.9"
+          - "master"
+          - "master-slim"
+          - "4.11"
+          - "4.11-slim"
+          - "4.10"
           - "4.10-slim"
+          - "4.9"
+          - "4.9-slim"
+          - "tex"
+          - "tex-slim"
   workflow_call:
     inputs:
       BRANCH:

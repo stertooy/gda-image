@@ -9,6 +9,7 @@ on:
         options:
           - "4.9-slim"
           - "4.9"
+          - "4.10-slim"
   workflow_call:
     inputs:
       BRANCH:

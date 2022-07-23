@@ -9,10 +9,10 @@ RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         autoconf \
         ca-certificates \
+        g++ \
         gcc \
         git \
         libgmp-dev \
-        libreadline-dev \
         libtool \
         make \
         netbase \

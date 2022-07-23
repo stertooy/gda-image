@@ -7,16 +7,28 @@ ENV GAP_HOME=/opt/gap
 RUN apt-get update && \
     apt-get upgrade --yes && \
     apt-get install --yes --no-install-recommends \
-        autoconf \
-        ca-certificates \
-        g++ \
-        gcc \
-        git \
-        libgmp-dev \
-        libtool \
-        make \
-        netbase \
-        wget && \
+        4ti2                 `# 4ti2Interface`    \
+        autoconf                                  \
+        ca-certificates                           \
+        g++                                       \
+        gcc                                       \
+        git                                       \
+        lib32gcc-6-dev       `# ANUPQ`            \
+        libc6-dev-i386       `# ANUPQ`            \
+        libcurl4-gnutls-dev  `# curlInterface`    \
+        libfplll-dev         `# float`            \
+        libgmp-dev                                \
+        libmpc-dev           `# float`            \
+        libmpfi-dev          `# float`            \
+        libmpfr-dev          `# float`            \
+        libncurses-dev       `# Browse`           \
+        libtool                                   \
+        libzmq3-dev          `# ZeroMQInterface`  \
+        make                                      \
+        pari-gp              `# Alnuth`           \
+        netbase                                   \
+        singular             `# singular`         \
+        wget                                   && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and build GAP
@@ -39,58 +51,21 @@ RUN cd ${GAP_HOME} && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
     rm -rf \
-        4ti2Interface-* \
-        ace-* \
-        anupq-* \
-        Browse \
         carat \
-        cohomolo-* \
-        crypting-* \
-        curlInterface-* \
-        cvec-* \
-        datastructures-* \
-        DeepThought-* \
-        design \
-        digraphs-* \
-        EDIM-* \
-        Example-* \
-        ExamplesForHomalg-* \
-        fining \
-        float-* \
-        FPLSA-* \
-        fwtree-* \
-        Gauss-* \
-        GaussForHomalg-* \
-        genss-* \
-        GradedModules-* \
-        GradedRingForHomalg-* \
-        grape \
-        guava-* \
+        Hap1.12 \
         HAPcryst \
         help \
-        itc-* \
-        json-* \
-        JupyterKernel-* \
-        kbmag-* \
-        linboxing \
-        matgrp \
-        NormalizInterface-* \
-        nq-* \
-        orb-* \
-        PolymakeInterface \
+        itc-1.5 \
+        kbmag-1.5.5 \
+        NormalizInterface-1.0.2 \
         polymaking \
-        qaos-* \
-        rcwa-* \
-        rds \
-        recog-* \
-        recogbase-* \
-        RingsForHomalg-* \
-        semigroups-* \
+        rcwa-4.6.2 \
+        semigroups-3.0.16 \
+        sglppow-2.1 \
         simpcomp \
-        singular \
-        ToricVarieties \
-        xgap-* \
-        ZeroMQInterface-*
+        xgap-4.27 \
+        XMod-2.69 \
+        XModAlg-1.17 \
 
 # Build GAP packages (should only be IO and profiling)
 RUN cd ${GAP_HOME}/pkg && \

@@ -1,4 +1,4 @@
-name: "My input is ${{ inputs.BRANCH }}"
+name: Publish image
 
 on:
   workflow_dispatch:

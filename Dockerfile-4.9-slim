@@ -67,7 +67,7 @@ RUN cd ${GAP_HOME} && \
         XMod-2.69 \
         XModAlg-1.17 \
 
-# Build GAP packages (should only be IO and profiling)
+# Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \
     ../bin/BuildPackages.sh
 

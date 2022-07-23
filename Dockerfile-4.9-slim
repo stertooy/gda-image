@@ -86,7 +86,7 @@ RUN cd ${GAP_HOME} && \
         recogbase-* \
         semigroups-* \
         simpcomp \
-        singular* \
+        singular \
         xgap-* \
         ZeroMQInterface-*
 

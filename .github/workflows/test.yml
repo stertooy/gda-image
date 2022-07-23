@@ -1,0 +1,21 @@
+name: My input is {{ inputs.BRANCH }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      BRANCH:
+        required: true
+        type: choice
+        options:
+          - "4.9-slim"
+          - "4.9"
+
+jobs:
+  build:
+    name: Publish GAP Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: echoooo
+        shell: bash
+        run: |
+          echo "${{ inputs.BRANCH }}"

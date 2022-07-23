@@ -6,7 +6,8 @@ ENV GAP_HOME=/opt/gap
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         4ti2                 `# 4ti2Interface` \
-        lib32gcc-6-dev       `# ANUPQ` \
+        automake             `# NormalizInterface` \
+        libc6-dev-i386       `# ANUPQ` \
         libboost-dev         `# NormalizInterface` \
         libcurl4-gnutls-dev  `# curlInterface` \
         libfplll-dev         `# float` \

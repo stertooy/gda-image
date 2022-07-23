@@ -5,24 +5,9 @@ ENV GAP_HOME=/opt/gap
 # Prerequisites
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        4ti2                 `# 4ti2Interface` \
-        automake             `# NormalizInterface` \
-        lib32gcc-6-dev       `# ANUPQ` \
-        libc6-dev-i386       `# ANUPQ` \
-        libboost-dev         `# NormalizInterface` \
-        libcurl4-gnutls-dev  `# curlInterface` \
-        libfplll-dev         `# float` \
-        libmpc-dev           `# float` \
-        libmpfi-dev          `# float` \
-        libmpfr-dev          `# float` \
-        libncurses-dev       `# Browse` \
-        libx11-dev           `# XGAP` \
-        libxaw7-dev          `# XGAP` \
-        libxt-dev            `# XGAP` \
-        libzmq3-dev          `# ZeroMQInterface` \
-        pari-gp              `# Alnuth` \
-        polymake             `# polymaking` \
-        singular             `# singular` && \
+        automake      `# NormalizInterface`       \
+        libboost-dev  `# NormalizInterface`       \
+        polymake      `# polymaking`           && \
     rm -rf /var/lib/apt/lists/*
 
 # Download GAP packages
@@ -32,9 +17,11 @@ RUN cd ${GAP_HOME} && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
     rm -rf \
+        itc-1.5 \
         linboxing \
         PolymakeInterface \
-        qaos-*
+        qaos-1.6 \
+        xgap-4.27
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

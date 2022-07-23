@@ -20,7 +20,7 @@ env:
 
 jobs:
   build:
-    name: Publish GAP Docker image
+    name: Publish GAP-${{ inputs.BRANCH }} Docker image
     runs-on: ubuntu-latest
     permissions:
       contents: read

@@ -8,16 +8,15 @@ RUN apt-get update && \
     apt-get upgrade --yes && \
     apt-get install --yes --no-install-recommends \
         autoconf \
-        build-essential \
         ca-certificates \
+        g++ \
         gcc \
         git \
         libgmp-dev \
-        libreadline-dev \
         libtool \
         netbase \
-        wget \
-        zlib1g-dev && \
+        wget && \
+        # zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and build GAP

@@ -57,15 +57,18 @@ RUN cd ${GAP_HOME} && \
         help \
         itc-1.5 \
         kbmag-1.5.5 \
+        linboxing \
         NormalizInterface-1.0.2 \
+        PolymakeInterface \
         polymaking \
+        qaos-1.6 \
         rcwa-4.6.2 \
         semigroups-3.0.16 \
         sglppow-2.1 \
         simpcomp \
         xgap-4.27 \
         XMod-2.69 \
-        XModAlg-1.17 \
+        XModAlg-1.17
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

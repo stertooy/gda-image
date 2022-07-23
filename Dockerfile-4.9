@@ -1,0 +1,47 @@
+FROM ghcr.io/stertooy/gda-image:4.9-slim as build
+
+ENV GAP_HOME=/opt/gap
+
+# Prerequisites
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends \
+        4ti2 \
+        automake \
+        gcc-multilib \
+        libboost-dev \
+        libcurl4-gnutls-dev \
+        libfplll-dev \
+        libglpk-dev \
+        libmpc-dev \
+        libmpfi-dev \
+        libmpfr-dev \
+        libncurses-dev \
+        libx11-dev \
+        libxaw7-dev \
+        libxt-dev \
+        libzmq3-dev \
+        pari-gp \
+        polymake \
+        singular && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download GAP packages
+RUN cd ${GAP_HOME} && \
+    rm -rf pkg && \
+    make bootstrap-pkg-full && \
+    rm packages*.tar.gz && \
+    cd ${GAP_HOME}/pkg && \
+    rm -rf \
+        linboxing \
+        PolymakeInterface \
+        qaos-*
+
+# Build GAP packages
+RUN cd ${GAP_HOME}/pkg && \
+    ../bin/BuildPackages.sh
+
+# Squash
+FROM scratch
+COPY --from=build / /
+
+CMD ["bash"]

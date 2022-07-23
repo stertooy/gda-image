@@ -16,8 +16,8 @@ RUN apt-get update && \
         libtool \
         make \
         netbase \
-        wget && \
-        # zlib1g-dev && \
+        wget \
+        zlib1g-dev && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and build GAP

@@ -21,6 +21,7 @@ RUN apt-get update && \
 
 # Download GAP packages
 RUN cd ${GAP_HOME} && \
+    rm -rf pkg && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg

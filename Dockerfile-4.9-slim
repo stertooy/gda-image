@@ -84,9 +84,11 @@ RUN cd ${GAP_HOME} && \
         rds \
         recog-* \
         recogbase-* \
+        RingsForHomalg-* \
         semigroups-* \
         simpcomp \
         singular \
+        ToricVarieties \
         xgap-* \
         ZeroMQInterface-*
 

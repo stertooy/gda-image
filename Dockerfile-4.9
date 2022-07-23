@@ -5,24 +5,19 @@ ENV GAP_HOME=/opt/gap
 # Prerequisites
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        4ti2 \
-        automake \
-        gcc-multilib \
-        libboost-dev \
-        libcurl4-gnutls-dev \
-        libfplll-dev \
-        libglpk-dev \
-        libmpc-dev \
-        libmpfi-dev \
-        libmpfr-dev \
-        libncurses-dev \
-        libx11-dev \
-        libxaw7-dev \
-        libxt-dev \
-        libzmq3-dev \
-        pari-gp \
-        polymake \
-        singular && \
+        4ti2                 `# 4ti2Interface` \
+        lib32gcc-6-dev       `# ANUPQ` \
+        libboost-dev         `# NormalizInterface` \
+        libcurl4-gnutls-dev  `# curlInterface` \
+        libfplll-dev         `# float` \
+        libmpc-dev           `# float` \
+        libmpfi-dev          `# float` \
+        libncurses-dev       `# Browse` \
+        libxaw7-dev          `# XGAP` \
+        libzmq3-dev          `# ZeroMQInterface` \
+        pari-gp              `# Alnuth` \
+        polymake             `# polymaking` \
+        singular             `# singular` && \
     rm -rf /var/lib/apt/lists/*
 
 # Download GAP packages

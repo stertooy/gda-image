@@ -60,3 +60,4 @@ The `slim` images contain only a selection of the available packages:
 ## TODO
 - Set appropriate cron schedules
 - finish 4.11, master and tex
+- create dockerfiles in a more dynamic way?

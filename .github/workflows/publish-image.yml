@@ -48,7 +48,7 @@ jobs:
           
           # Add image name to Dockerfile
           IMAGE=$(grep "${{ inputs.branch }}" ${{ inputs.type }}/images.txt | cut -d'=' -f2)
-          sed -i -e "s/{{IMAGE}}/$IMAGE/" Dockerfile
+          sed -i -e "s#{{IMAGE}}#$IMAGE#" Dockerfile
           
           # Add GAP branch name to Dockerfile
           BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.branch }}")

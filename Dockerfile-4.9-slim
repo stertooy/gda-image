@@ -51,6 +51,7 @@ RUN cd ${GAP_HOME} && \
     cd ${GAP_HOME}/pkg && \
     rm -rf                                         \
         carat                    `# too large`     \
+        Convex                   `# dependencies`  \
         Hap1.12                  `# too large`     \
         HAPcryst                 `# dependencies`  \
         help                     `# dependencies`  \
@@ -63,6 +64,7 @@ RUN cd ${GAP_HOME} && \
         semigroups-3.0.16        `# too large`     \
         sglppow-2.1              `# too large`     \
         simpcomp                 `# too large`     \
+        ToricVarieties           `# dependencies`  \
         xgap-4.27                `# unusable`      \
         XMod-2.69                `# dependencies`  \
         XModAlg-1.17             `# dependencies`

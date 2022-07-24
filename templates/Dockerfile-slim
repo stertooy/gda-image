@@ -6,9 +6,9 @@ ENV GAP_ROOT=/tmp/gaproot
 
 # Prerequisites
 RUN <<EOF
-    apt-get update
-    apt-get upgrade
-    apt-get install --yes --no-install-recommends   \
+    apt update
+    apt upgrade
+    apt install --yes --no-install-recommends   \
         autoconf                                    \
         build-essential                             \
         ca-certificates                             \

@@ -1,4 +1,4 @@
-name: Publish GAP Docker image
+name: Test creating GAP Docker image
 
 on:
   workflow_dispatch:

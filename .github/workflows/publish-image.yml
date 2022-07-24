@@ -51,7 +51,7 @@ jobs:
           BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.branch }}")
           sed -i -e "s/{{IMAGE}}/$IMAGE/" Dockerfile
           sed -i -e "s/{{BRANCH}}/$BRANCH/" Dockerfile
-          sed -i -e "s/{{PACKAGES}}/$PACKAGES/" -e Dockerfile
+          sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
           sed -i -e "s/{{DEPENDENCIES}}/$DEPENDENCIES/" Dockerfile
           
       #- name: Log in to Docker Hub

@@ -7,25 +7,35 @@ ENV GAP_HOME=/opt/gap
 RUN apt-get update && \
     apt-get upgrade --yes && \
     apt-get install --yes --no-install-recommends \
-        autoconf \
-        ca-certificates \
-        g++ \
-        gcc \
-        git \
-        libgmp-dev \
-        libtool \
-        make \
-        netbase \
-        wget \
-        zlib1g-dev && \
+        4ti2                 `# 4ti2Interface`    \
+        autoconf                                  \
+        build-essential                           \
+        ca-certificates                           \
+        git                                       \
+        lib32gcc-6-dev       `# ANUPQ`            \
+        libc6-dev-i386       `# ANUPQ`            \
+        libcurl4-gnutls-dev  `# curlInterface`    \
+        libfplll-dev         `# float`            \
+        libgmp-dev                                \
+        libmpc-dev           `# float`            \
+        libmpfi-dev          `# float`            \
+        libmpfr-dev          `# float`            \
+        libncurses-dev       `# Browse`           \
+        libtool                                   \
+        libzmq3-dev          `# ZeroMQInterface`  \
+        pari-gp              `# Alnuth`           \
+        netbase              `# IO`               \
+        singular             `# singular`         \
+        wget                                      \
+        zlib1g-dev                             && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and build GAP
 RUN git clone --depth 1 --branch ${GAP_BRANCH} https://github.com/gap-system/gap ${GAP_HOME} && \
     cd ${GAP_HOME} && \
-    rm -rf \
-        dev \
-        extern \
+    rm -rf      \
+        dev     \
+        extern  \
         hpcgap
 
 # Build GAP
@@ -40,70 +50,30 @@ RUN cd ${GAP_HOME} && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
     rm -rf \
-        4ti2Interface-* \
-        ace-* \
-        anupq-* \
-        Browse \
-        carat \
-        cohomolo-* \
-        crypting-* \
-        curlInterface-* \
-        cvec-* \
-        datastructures-* \
-        DeepThought-* \
-        design-* \
-        difsets-* \
-        digraphs-* \
-        EDIM-* \
-        Example-* \
-        ExamplesForHomalg-* \
-        fining \
-        float-* \
-        FPLSA-* \
-        francy-* \
-        fwtree-* \
-        Gauss-* \
-        GaussForHomalg-* \
-        genss-* \
-        GradedModules-* \
-        GradedRingForHomalg-* \
-        grape-* \
-        guava-* \
-        HAPcryst \
-        HeLP-* \
-        itc-* \
-        json-* \
-        JupyterKernel-* \
-        jupyterviz-* \
-        kbmag-* \
-        MajoranaAlgebras-* \
-        matgrp \
-        NormalizInterface-* \
-        nq-* \
-        orb-* \
-        PolymakeInterface-* \
-        polymaking-* \
-        rcwa-* \
-        rds-* \
-        recog-* \
-        RingsForHomalg-* \
-        semigroups-* \
-        simpcomp \
-        singular-* \
-        Thelma-* \
-        ToricVarieties \
-        walrus-* \
-        xgap-* \
-        ZeroMQInterface-*
+        carat                         `# too large`     \
+        Hap1.21                       `# too large`     \
+        HAPcryst                      `# dependencies`  \
+        HeLP-3.4                      `# dependencies`  \
+        itc-1.5                       `# dependencies`  \
+        NormalizInterface-1.1.0       `# too large`     \
+        PolymakeInterface-2019.06.01  `# unusable`      \
+        polymaking-0.8.2              `# dependencies`  \
+        semigroups-3.1.5              `# too large`     \
+        sglppow-2.1                   `# too large`     \
+        simpcomp                      `# too large`     \
+        XMod-2.73                     `# dependencies`  \
+        XModAlg-1.17                  `# dependencies`  \
+        xgap-4.30                     `# unusable`      \
+        YangBaxter-0.8.0              `# too large`
 
-# Build GAP packages (should only be IO and profiling)
+# Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \
     ../bin/BuildPackages.sh
 
 # Prepare for Github Actions use
-RUN printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh "$@"\n' ${GAP_HOME} > /usr/local/bin/gap && \
-    chmod +x /usr/local/bin/gap && \
-    mkdir -p /tmp/gaproot/pkg
+RUN mkdir -p /tmp/gaproot/pkg && \
+    printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh -l %s; --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap && \
+    chmod +x /usr/local/bin/gap
 
 # Squash
 FROM scratch

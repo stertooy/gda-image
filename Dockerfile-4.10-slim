@@ -2,6 +2,7 @@ FROM debian:buster-slim as build
 
 ENV GAP_BRANCH=stable-4.10
 ENV GAP_HOME=/opt/gap
+ENV GAP_ROOT=/tmp/gaproot
 
 # Prerequisites
 RUN apt-get update && \

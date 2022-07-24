@@ -7,34 +7,34 @@ ENV GAP_ROOT=/tmp/gaproot
 # Prerequisites
 RUN apt-get update && \
     apt-get upgrade --yes && \
-    apt-get install --yes --no-install-recommends \
-        4ti2                 `# 4ti2Interface`    \
-        autoconf                                  \
-        build-essential                           \
-        ca-certificates                           \
-        git                                       \
-        libcurl4-gnutls-dev  `# curlInterface`    \
-        libfplll-dev         `# float`            \
-        libgmp-dev                                \
-        libmpc-dev           `# float`            \
-        libmpfi-dev          `# float`            \
-        libmpfr-dev          `# float`            \
-        libncurses-dev       `# Browse`           \
-        libtool                                   \
-        libzmq3-dev          `# ZeroMQInterface`  \
-        pari-gp              `# Alnuth`           \
-        netbase              `# IO`               \
-        singular             `# singular`         \
-        wget                                      \
-        zlib1g-dev                             && \
+    apt-get install --yes --no-install-recommends   \
+        4ti2                  `# 4ti2Interface`     \
+        autoconf                                    \
+        build-essential                             \
+        ca-certificates                             \
+        git                                         \
+        libcurl4-gnutls-dev   `# curlInterface`     \
+        libfplll-dev          `# float`             \
+        libgmp-dev                                  \
+        libmpc-dev            `# float`             \
+        libmpfi-dev           `# float`             \
+        libmpfr-dev           `# float`             \
+        libncurses-dev        `# Browse`            \
+        libtool                                     \
+        libzmq3-dev           `# ZeroMQInterface`   \
+        pari-gp               `# Alnuth`            \
+        netbase               `# IO`                \
+        singular              `# singular`          \
+        wget                                        \
+        zlib1g-dev                               && \
     rm -rf /var/lib/apt/lists/*
 
 # Download and build GAP
 RUN git clone --depth 1 --branch ${GAP_BRANCH} https://github.com/gap-system/gap ${GAP_HOME} && \
     cd ${GAP_HOME} && \
-    rm -rf      \
-        dev     \
-        extern  \
+    rm -rf       \
+        dev      \
+        extern   \
         hpcgap
 
 # Build GAP
@@ -48,24 +48,24 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf                                              \
-        carat                         `# too large`     \
-        Convex-2019.06.01             `# dependencies`  \
-        Hap1.21                       `# too large`     \
-        HAPcryst                      `# dependencies`  \
-        HeLP-3.4                      `# dependencies`  \
-        itc-1.5                       `# dependencies`  \
-        NormalizInterface-1.1.0       `# too large`     \
-        PolymakeInterface-2019.06.01  `# unusable`      \
-        polymaking-0.8.2              `# dependencies`  \
-        semigroups-3.1.5              `# too large`     \
-        sglppow-2.1                   `# too large`     \
-        simpcomp                      `# too large`     \
-        ToricVarieties                `# dependencies`  \
-        XMod-2.73                     `# dependencies`  \
-        XModAlg-1.17                  `# dependencies`  \
-        xgap-4.30                     `# unusable`      \
-        YangBaxter-0.8.0              `# too large`
+    rm -rf                                                \
+        carat                          `# too large`      \
+        Convex-2019.06.01              `# dependencies`   \
+        Hap1.21                        `# too large`      \
+        HAPcryst                       `# dependencies`   \
+        HeLP-3.4                       `# dependencies`   \
+        itc-1.5                        `# dependencies`   \
+        NormalizInterface-1.1.0        `# too large`      \
+        PolymakeInterface-2019.06.01   `# unusable`       \
+        polymaking-0.8.2               `# dependencies`   \
+        semigroups-3.1.5               `# too large`      \
+        sglppow-2.1                    `# too large`      \
+        simpcomp                       `# too large`      \
+        ToricVarieties                 `# dependencies`   \
+        XMod-2.73                      `# dependencies`   \
+        XModAlg-1.17                   `# dependencies`   \
+        xgap-4.30                      `# unusable`       \
+        YangBaxter-0.8.0               `# too large`
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

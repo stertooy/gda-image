@@ -11,18 +11,7 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
     apt update
     apt upgrade
-    apt install --yes --no-install-recommends   \
-        autoconf                                \
-        build-essential                         \
-        ca-certificates                         \
-        git                                     \
-        libgmp-dev                              \
-        libncurses-dev        `# Browse`        \
-        libtool                                 \
-        pari-gp               `# Alnuth`        \
-        netbase               `# IO`            \
-        wget                                    \
-        zlib1g-dev
+    apt install --yes --no-install-recommends {{DEPENDENCIES}}
     rm -rf /var/lib/apt/lists/*
 EOF
 
@@ -30,10 +19,7 @@ EOF
 RUN <<EOF
     git clone --depth 1 --branch ${GAP_BRANCH} https://github.com/gap-system/gap ${GAP_HOME}
     cd ${GAP_HOME}
-    rm -rf       \
-        dev      \
-        extern   \
-        hpcgap
+    rm -rf dev extern hpcgap
 EOF
 
 # Build GAP

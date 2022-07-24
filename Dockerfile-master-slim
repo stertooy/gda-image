@@ -1,0 +1,83 @@
+FROM debian:bookworm-slim as build
+
+ENV GAP_BRANCH=master
+ENV GAP_HOME=/opt/gap
+ENV GAP_ROOT=/tmp/gaproot
+
+# Prerequisites
+RUN apt-get update && \
+    apt-get upgrade --yes && \
+    apt-get install --yes --no-install-recommends   \
+        4ti2                  `# 4ti2Interface`     \
+        autoconf                                    \
+        build-essential                             \
+        ca-certificates                             \
+        git                                         \
+        libcdd-dev            `# CddInterface`      \
+        libcurl4-gnutls-dev   `# curlInterface`     \
+        libfplll-dev          `# float`             \
+        libgmp-dev                                  \
+        libmpc-dev            `# float`             \
+        libmpfi-dev           `# float`             \
+        libmpfr-dev           `# float`             \
+        libncurses-dev        `# Browse`            \
+        libtool                                     \
+        libzmq3-dev           `# ZeroMQInterface`   \
+        pari-gp               `# Alnuth`            \
+        netbase               `# IO`                \
+        singular              `# singular`          \
+        wget                                        \
+        zlib1g-dev                               && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download and build GAP
+RUN git clone --depth 1 --branch ${GAP_BRANCH} https://github.com/gap-system/gap ${GAP_HOME} && \
+    cd ${GAP_HOME} && \
+    rm -rf       \
+        dev      \
+        extern   \
+        hpcgap
+
+# Build GAP
+RUN cd ${GAP_HOME} && \
+    ./autogen.sh && \
+    ./configure && \
+    make
+
+# Download GAP packages
+RUN cd ${GAP_HOME} && \
+    make bootstrap-pkg-full && \
+    rm packages*.tar.gz && \
+    cd ${GAP_HOME}/pkg && \
+    rm -rf                                     \
+        caratinterface      `# too large`      \
+        hap                 `# too large`      \
+        hapcryst            `# dependencies`   \
+        help                `# dependencies`   \
+        itc                 `# dependencies`   \
+        nconvex             `# dependencies`   \
+        normalizinterface   `# too large`      \
+        polymaking          `# dependencies`   \
+        semigroups          `# too large`      \
+        sglppow             `# too large`      \
+        simpcomp            `# too large`      \
+        toricvarieties      `# dependencies`   \
+        xmod                `# dependencies`   \
+        xmodalg             `# dependencies`   \
+        xgap                `# unusable`       \
+        yangbaxter          `# too large`
+
+# Build GAP packages
+RUN cd ${GAP_HOME}/pkg && \
+    ../bin/BuildPackages.sh
+
+# Prepare for Github Actions use
+RUN mkdir -p /tmp/gaproot/pkg && \
+    printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh -l "%s;" --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap && \
+    chmod +x /usr/local/bin/gap
+
+# Squash
+FROM scratch
+COPY --from=build / /
+
+CMD ["bash"]

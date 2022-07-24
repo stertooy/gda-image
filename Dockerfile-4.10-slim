@@ -48,7 +48,7 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf \
+    rm -rf                                              \
         carat                         `# too large`     \
         Convex-2019.06.01             `# dependencies`  \
         Hap1.21                       `# too large`     \

@@ -73,7 +73,7 @@ RUN cd ${GAP_HOME}/pkg && \
 
 # Prepare for Github Actions use
 RUN mkdir -p /tmp/gaproot/pkg && \
-    printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh -l %s; --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap && \
+    printf '#!/bin/sh\nGAP="%s/bin/gap.sh -l %s; --quitonbreak"\nLC_CTYPE=C.UTF-8 TERM="xterm" $GAP "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap && \
     chmod +x /usr/local/bin/gap
 
 # Squash

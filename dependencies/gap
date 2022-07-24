@@ -1,0 +1,8 @@
+autoconf
+build-essential
+ca-certificates
+git
+libgmp-dev
+libtool
+wget
+zlib1g-dev

@@ -52,41 +52,7 @@ RUN <<EOF
     do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
         if ! cat << '        PKGS' | grep -Fwq "$pkgBase"
-            aclib
-            alnuth
-            atlasrep
-            autodoc
-            autpgrp
-            browse
-            carat
-            caratinterface
-            crisp
-            cryst
-            crystcat
-            ctbllib
-            factint
-            fga
-            forms
-            gapdoc
-            genss
-            io
-            irredsol
-            laguna
-            orb
-            polenta
-            polycyclic
-            primgrp
-            profiling
-            radiroot
-            recog
-            recogbase
-            resclasses
-            smallgrp
-            sophus
-            spinsym
-            tomlib
-            transgrp
-            utils
+            [[PACKAGES]]
         PKGS
         then 
             rm -rf $pkg

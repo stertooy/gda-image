@@ -1,1 +1,13 @@
-
+4ti2                  `# 4ti2Interface     `
+automake              `# NormalizInterface `
+lib32gcc-6-dev        `# ANUPQ             `
+libboost-dev          `# NormalizInterface `
+libc6-dev-i386        `# ANUPQ             `
+libcurl4-gnutls-dev   `# curlInterface     `
+libfplll-dev          `# float             `
+libmpc-dev            `# float             `
+libmpfi-dev           `# float             `
+libmpfr-dev           `# float             `
+libzmq3-dev           `# ZeroMQInterface   `
+polymake              `# polymaking        `     
+singular              `# singular          `

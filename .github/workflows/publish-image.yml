@@ -45,7 +45,7 @@ jobs:
           PACKAGES=$(tr "\n" " " < slim/packages.txt)
           IMAGE="debian:stretch-slim"
           BRANCH="stable-4.9"
-          sed -i -e "s/{{IMAGE}}/$IMAGE/" -e "s/{{BRANCH}}/$BRANCH/" -e "s/{{PKGS}}/$PACKAGES/" Dockerfile
+          sed -i -e "s/{{IMAGE}}/$IMAGE/" -e "s/{{BRANCH}}/$BRANCH/" -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
           
       #- name: Log in to Docker Hub
       #  uses: docker/login-action@v2

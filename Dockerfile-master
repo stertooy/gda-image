@@ -1,0 +1,29 @@
+FROM ghcr.io/stertooy/gda-image:master-slim as build
+
+ENV GAP_HOME=/opt/gap
+
+# Prerequisites
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends   \
+        polymake   `# polymaking`                && \
+    rm -rf /var/lib/apt/lists/*
+
+# Download GAP packages
+RUN cd ${GAP_HOME} && \
+    rm -rf pkg && \
+    make bootstrap-pkg-full && \
+    rm packages*.tar.gz && \
+    cd ${GAP_HOME}/pkg && \
+    rm -rf                        \
+        itc    `# dependencies`   \
+        xgap   `# unusable`      
+
+# Build GAP packages
+RUN cd ${GAP_HOME}/pkg && \
+    ../bin/BuildPackages.sh
+
+# Squash
+FROM scratch
+COPY --from=build / /
+
+CMD ["bash"]

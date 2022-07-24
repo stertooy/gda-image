@@ -83,8 +83,7 @@ jobs:
             ${{ github.repository }}
             ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=raw,value=test
-          # type=raw,value=${{ inputs.BRANCH }}
+            type=raw,value=${{ inputs.BRANCH }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v3

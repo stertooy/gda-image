@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM debian:stretch-slim as build
+FROM {{IMAGE}} as build
 
-ENV GAP_BRANCH=stable-4.9
+ENV GAP_BRANCH={{BRANCH}}
 ENV GAP_HOME=/opt/gap
 ENV GAP_ROOT=/tmp/gaproot
 
@@ -48,47 +48,9 @@ RUN <<EOF
     make bootstrap-pkg-full
     rm packages*.tar.gz
     cd ${GAP_HOME}/pkg
-    for pkg in */
-    do
+    for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        if ! cat << '        PKGS' | grep -Fwq "$pkgBase"
-            aclib
-            alnuth
-            atlasrep
-            autodoc
-            autpgrp
-            browse
-            carat
-            caratinterface
-            crisp
-            cryst
-            crystcat
-            ctbllib
-            factint
-            fga
-            forms
-            gapdoc
-            genss
-            io
-            irredsol
-            laguna
-            orb
-            polenta
-            polycyclic
-            primgrp
-            profiling
-            radiroot
-            recog
-            recogbase
-            resclasses
-            smallgrp
-            sophus
-            spinsym
-            tomlib
-            transgrp
-            utils
-        PKGS
-        then 
+        if ! grep -Fwq "$pkgBase" <<< "{{PACKAGES}}"; then
             rm -rf $pkg
         fi
     done

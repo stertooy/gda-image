@@ -5,21 +5,8 @@ ENV GAP_HOME=/opt/gap
 # Prerequisites
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
-        4ti2                 `# 4ti2Interface` \
-        libboost-dev         `# NormalizInterface` \
-        libcurl4-gnutls-dev  `# curlInterface` \
-        libfplll-dev         `# float` \
-        libmpc-dev           `# float` \
-        libmpfi-dev          `# float` \
-        libmpfr-dev          `# float` \
-        libncurses-dev       `# Browse` \
-        libx11-dev           `# XGAP` \
-        libxaw7-dev          `# XGAP` \
-        libxt-dev            `# XGAP` \
-        libzmq3-dev          `# ZeroMQInterface` \
-        pari-gp              `# Alnuth` \
-        polymake             `# polymaking` \
-        singular             `# singular` && \
+        libboost-dev  `# NormalizInterface`       \
+        polymake      `# polymaking`           && \
     rm -rf /var/lib/apt/lists/*
 
 # Download GAP packages
@@ -29,7 +16,9 @@ RUN cd ${GAP_HOME} && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
     rm -rf \
-        PolymakeInterface
+        itc-1.5                       `# dependencies`  \
+        PolymakeInterface-2019.06.01  `# unusable`      \
+        xgap-4.30                     `# unusable`      
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

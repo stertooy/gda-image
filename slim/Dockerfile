@@ -44,6 +44,7 @@ EOF
 
 # Download GAP packages
 RUN <<EOF
+    bash
     cd ${GAP_HOME}
     make bootstrap-pkg-full
     rm packages*.tar.gz

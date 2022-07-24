@@ -1,19 +1,63 @@
 # gda-image: GAP Docker images for GitHub Actions
 
-This repository contains docker images with GAP and (as many as possible of) its packages pre-installed inside a (slim) Debian environment.
+This repository contains docker images with GAP and its packages pre-installed inside a (slim) Debian environment.
 
 ## Available images
 
 The following images are available:
 
-- `master`: contains the GAP `master` branch, built upon Debian's `bookworm-slim` image;
-- `4.11`: contains the GAP `stable-4.11` branch, built upon Debian's `bullseye-slim` image;
-- `4.10`: contains the GAP `stable-4.10` branch, built upon Debian's `buster-slim` image;
-- `4.9`: contains the GAP `stable-4.9` branch, built upon Debian's `stretch-slim` image;
-- `tex`: contains the GAP `master` branch, as well as texlive-packages required to build manuals, built upon Debian's `bookworm-slim` image.
+- `master`, `master-slim`: contains the GAP `master` branch, built upon Debian's `bookworm-slim` image;
+- `4.11`, `4.11-slim`: contains the GAP `stable-4.11` branch, built upon Debian's `bullseye-slim` image;
+- `4.10`, `4.10-slim`: contains the GAP `stable-4.10` branch, built upon Debian's `buster-slim` image;
+- `4.9`, `4.9-slim`: contains the GAP `stable-4.9` branch, built upon Debian's `stretch-slim` image;
+- `tex`, `tex-slim`: contains the GAP `master` branch, as well as texlive-packages required to build manuals, built upon Debian's `bookworm-slim` image.
+
+## Available packages
+
+The standard images contain all packages that come with GAP by default, except:
+  * linboxing
+  * itc
+  * PolymakeInterface
+  * qaos
+  * xgap
+  
+The `slim` images contain only a selection of the available packages:
+
+  * aclib
+  * alnuth
+  * atlasrep
+  * autodoc
+  * autpgrp
+  * browse
+  * caratinterface (or carat)
+  * crisp
+  * cryst
+  * crystcat
+  * ctbllib
+  * factint
+  * fga
+  * forms
+  * gapdoc
+  * genss
+  * io
+  * irredsol
+  * laguna
+  * orb
+  * polenta
+  * polycyclic
+  * primgrp
+  * profiling
+  * radiroot
+  * recog (and recogbase)
+  * resclasses
+  * smallgrp
+  * sophus
+  * spinsym
+  * tomlib
+  * transgrp
+  * utils
 
 ## TODO
-
-- Make `-slim'-builds of each image, containing only packages that do not rely on external software (or packages relying on those packages, etc)
-- Let non-slim images build upon slim ones.
 - Set appropriate cron schedules
+- finish 4.11, master and tex
+- create dockerfiles in a more dynamic way?

@@ -1,0 +1,16 @@
+FROM ghcr.io/stertooy/gda-image:master-slim as build
+
+# Install TexLive
+RUN apt-get update && \
+    apt-get install --yes --no-install-recommends   \
+        texlive-latex-base                          \
+        texlive-latex-recommended                   \
+        texlive-latex-extra                         \
+        texlive-fonts-recommended                && \
+    rm -rf /var/lib/apt/lists/*
+
+# Squash
+FROM scratch
+COPY --from=build / /
+
+CMD ["bash"]

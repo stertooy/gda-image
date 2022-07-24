@@ -1,0 +1,43 @@
+name: Publish GAP Docker image
+
+on:
+  workflow_dispatch:
+    inputs:
+      BRANCH:
+        required: true
+        type: choice
+        options:
+          - "master"
+          - "master-slim"
+          - "4.11"
+          - "4.11-slim"
+          - "4.10"
+          - "4.10-slim"
+          - "4.9"
+          - "4.9-slim"
+          - "tex"
+          - "tex-slim"
+  workflow_call:
+    inputs:
+      BRANCH:
+        required: true
+        type: string
+
+jobs:
+  build:
+    name: Publish GAP-${{ inputs.BRANCH }} Docker image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: |

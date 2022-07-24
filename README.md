@@ -14,7 +14,7 @@ The following images are available:
 
 ## Available packages
 
-The images contain all packages that come with GAP by default, except:
+The standard images contain all packages that come with GAP by default, except:
   * linboxing
   * itc
   * PolymakeInterface

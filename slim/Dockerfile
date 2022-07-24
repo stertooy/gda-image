@@ -5,6 +5,8 @@ ENV GAP_BRANCH={{BRANCH}}
 ENV GAP_HOME=/opt/gap
 ENV GAP_ROOT=/tmp/gaproot
 
+SHELL ["/bin/bash", "-c"]
+
 # Prerequisites
 RUN <<EOF
     apt update
@@ -44,7 +46,6 @@ EOF
 
 # Download GAP packages
 RUN <<EOF
-    bash
     cd ${GAP_HOME}
     make bootstrap-pkg-full
     rm packages*.tar.gz

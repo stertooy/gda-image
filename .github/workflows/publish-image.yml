@@ -45,14 +45,22 @@ jobs:
         shell: bash
         run: |
           mv slim/Dockerfile Dockerfile
-          PACKAGES=$(tr "\n" " " < ${{ inputs.type }}/packages.txt)
-          DEPENDENCIES=$(tr "\n" " " < ${{ inputs.type }}/dependencies/${{ inputs.branch }}.txt)
+          
+          # Add image name to Dockerfile
           IMAGE=$(grep "${{ inputs.branch }}" ${{ inputs.type }}/images.txt | cut -d'=' -f2)
-          BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.branch }}")
           sed -i -e "s/{{IMAGE}}/$IMAGE/" Dockerfile
+          
+          # Add GAP branch name to Dockerfile
+          BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.branch }}")
           sed -i -e "s/{{BRANCH}}/$BRANCH/" Dockerfile
-          sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
+          
+          # Add dependencies to Dockerfile
+          DEPENDENCIES=$(tr "\n" " " < ${{ inputs.type }}/dependencies/${{ inputs.branch }}.txt)
           sed -i -e "s/{{DEPENDENCIES}}/$DEPENDENCIES/" Dockerfile
+          
+          # Add packages to Dockerfile
+          PACKAGES=$(tr "\n" " " < ${{ inputs.type }}/packages.txt)
+          sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
           
       #- name: Log in to Docker Hub
       #  uses: docker/login-action@v2

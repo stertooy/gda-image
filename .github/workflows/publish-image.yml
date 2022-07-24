@@ -47,7 +47,7 @@ jobs:
           mv slim/Dockerfile Dockerfile
           PACKAGES=$(tr "\n" " " < ${{ inputs.type }}/packages.txt)
           DEPENDENCIES=$(tr "\n" " " < ${{ inputs.type }}/dependencies/${{ inputs.branch }}.txt)
-          IMAGE=$(grep "{{ inputs.branch}}" ${{ inputs.type }}/images.txt | cut -d'=' -f2)
+          IMAGE=$(grep "{{ inputs.branch }}" ${{ inputs.type }}/images.txt | cut -d'=' -f2)
           BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.branch }}")
           sed -i -e "s/{{IMAGE}}/$IMAGE/" Dockerfile
           sed -i -e "s/{{BRANCH}}/$BRANCH/" Dockerfile

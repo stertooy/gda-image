@@ -8,24 +8,15 @@ ENV GAP_ROOT=/tmp/gaproot
 RUN apt-get update && \
     apt-get upgrade --yes && \
     apt-get install --yes --no-install-recommends   \
-        4ti2                  `# 4ti2Interface`     \
         autoconf                                    \
         build-essential                             \
         ca-certificates                             \
         git                                         \
-        libcdd-dev            `# CddInterface`      \
-        libcurl4-gnutls-dev   `# curlInterface`     \
-        libfplll-dev          `# float`             \
         libgmp-dev                                  \
-        libmpc-dev            `# float`             \
-        libmpfi-dev           `# float`             \
-        libmpfr-dev           `# float`             \
         libncurses-dev        `# Browse`            \
         libtool                                     \
-        libzmq3-dev           `# ZeroMQInterface`   \
         pari-gp               `# Alnuth`            \
         netbase               `# IO`                \
-        singular              `# singular`          \
         wget                                        \
         zlib1g-dev                               && \
     rm -rf /var/lib/apt/lists/*
@@ -49,23 +40,127 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf                                     \
-        caratinterface      `# too large`      \
-        hap                 `# too large`      \
-        hapcryst            `# dependencies`   \
-        help                `# dependencies`   \
-        itc                 `# dependencies`   \
-        nconvex             `# dependencies`   \
-        normalizinterface   `# too large`      \
-        polymaking          `# dependencies`   \
-        semigroups          `# too large`      \
-        sglppow             `# too large`      \
-        simpcomp            `# too large`      \
-        toricvarieties      `# dependencies`   \
-        xmod                `# dependencies`   \
-        xmodalg             `# dependencies`   \
-        xgap                `# unusable`       \
-        yangbaxter          `# too large`
+    rm -rf \
+        4ti2interface   \
+        ace   \
+        agt   \
+        anupq   \
+        automata   \
+        automgrp   \
+        cap   \
+        cddinterface   \
+        circle   \
+        classicpres   \
+        cohomolo   \
+        congruence   \
+        corelg   \
+        crime   \
+        crypting   \
+        cubefree   \
+        curlinterface   \
+        cvec   \
+        datastructures   \
+        deepthought   \
+        design   \
+        difsets   \
+        digraphs   \
+        edim   \
+        example   \
+        examplesforhomalg   \
+        ferret   \
+        fining   \
+        float   \
+        format   \
+        fplsa   \
+        fr   \
+        francy   \
+        fwtree   \
+        gauss   \
+        gaussforhomalg   \
+        gbnp   \
+        generalizedmorphismsforcap   \
+        gradedmodules   \
+        gradedringforhomalg   \
+        grape   \
+        groupoids   \
+        grpconst   \
+        guarana   \
+        guava   \
+        hap   \
+        hapcryst   \
+        hecke   \
+        help   \
+        homalg   \
+        homalgtocas   \
+        idrel   \
+        images   \
+        intpic   \
+        io_forhomalg   \
+        itc   \
+        json   \
+        jupyterkernel   \
+        jupyterviz   \
+        kan   \
+        kbmag   \
+        liealgdb   \
+        liepring   \
+        liering   \
+        linearalgebraforcap   \
+        localizeringforhomalg   \
+        loops   \
+        lpres   \
+        majoranaalgebras   \
+        mapclass   \
+        matgrp   \
+        matricesforhomalg   \
+        modisom   \
+        modulepresentationsforcap   \
+        modules   \
+        monoidalcategories   \
+        nconvex   \
+        nilmat   \
+        nock   \
+        normalizinterface   \
+        nq   \
+        numericalsgps   \
+        openmath   \
+        packagemanager   \
+        patternclass   \
+        permut   \
+        polymaking   \
+        qpa   \
+        quagroup   \
+        rcwa   \
+        rds   \
+        repndecomp   \
+        repsn   \
+        ringsforhomalg   \
+        sco   \
+        scscp   \
+        semigroups   \
+        sglppow   \
+        sgpviz   \
+        simpcomp   \
+        singular   \
+        sla   \
+        smallsemi   \
+        sonata   \
+        symbcompcc   \
+        thelma   \
+        toolsforhomalg   \
+        toric   \
+        toricvarieties   \
+        ugaly   \
+        unipot   \
+        unitlib   \
+        uuid   \
+        walrus   \
+        wedderga   \
+        xgap   \
+        xmod   \
+        xmodalg   \
+        yangbaxter   \
+        zeromqinterface
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

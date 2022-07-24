@@ -9,9 +9,9 @@ SHELL ["/bin/bash", "-c"]
 
 # Prerequisites
 RUN <<EOF
-    apt update
-    apt upgrade
-    apt install --yes --no-install-recommends {{DEPENDENCIES}}
+    apt-get update
+    apt-get upgrade --yes
+    apt-get install --yes --no-install-recommends {{DEPENDENCIES}}
     rm -rf /var/lib/apt/lists/*
 EOF
 

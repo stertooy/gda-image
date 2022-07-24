@@ -1,1 +1,4 @@
-
+4.9=ghcr.io/stertooy/gda-image:4.9-slim
+4.10=ghcr.io/stertooy/gda-image:4.10-slim
+4.11=ghcr.io/stertooy/gda-image:4.11-slim
+master=ghcr.io/stertooy/gda-image:master-slim

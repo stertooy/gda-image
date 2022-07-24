@@ -9,9 +9,8 @@ RUN apt-get update && \
     apt-get install --yes --no-install-recommends \
         4ti2                 `# 4ti2Interface`    \
         autoconf                                  \
+        build-essential                           \
         ca-certificates                           \
-        g++                                       \
-        gcc                                       \
         git                                       \
         lib32gcc-6-dev       `# ANUPQ`            \
         libc6-dev-i386       `# ANUPQ`            \
@@ -24,9 +23,8 @@ RUN apt-get update && \
         libncurses-dev       `# Browse`           \
         libtool                                   \
         libzmq3-dev          `# ZeroMQInterface`  \
-        make                                      \
         pari-gp              `# Alnuth`           \
-        netbase                                   \
+        netbase              `# IO`               \
         singular             `# singular`         \
         wget                                   && \
     rm -rf /var/lib/apt/lists/*
@@ -34,9 +32,9 @@ RUN apt-get update && \
 # Download and build GAP
 RUN git clone --depth 1 --branch ${GAP_BRANCH} https://github.com/gap-system/gap ${GAP_HOME} && \
     cd ${GAP_HOME} && \
-    rm -rf \
-        dev \
-        extern \
+    rm -rf      \
+        dev     \
+        extern  \
         hpcgap
 
 # Build GAP
@@ -50,25 +48,23 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf \
-        carat \
-        Hap1.12 \
-        HAPcryst \
-        help \
-        itc-1.5 \
-        kbmag-1.5.5 \
-        linboxing \
-        NormalizInterface-1.0.2 \
-        PolymakeInterface \
-        polymaking \
-        qaos-1.6 \
-        rcwa-4.6.2 \
-        semigroups-3.0.16 \
-        sglppow-2.1 \
-        simpcomp \
-        xgap-4.27 \
-        XMod-2.69 \
-        XModAlg-1.17
+    rm -rf                                         \
+        carat                    `# too large`     \
+        Hap1.12                  `# too large`     \
+        HAPcryst                 `# dependencies`  \
+        help                     `# dependencies`  \
+        itc-1.5                  `# dependencies`  \
+        linboxing                `# unusable`      \
+        NormalizInterface-1.0.2  `# too large`     \
+        PolymakeInterface        `# unusable`      \
+        polymaking               `# dependencies`  \
+        qaos-1.6                 `# unusable`      \
+        semigroups-3.0.16        `# too large`     \
+        sglppow-2.1              `# too large`     \
+        simpcomp                 `# too large`     \
+        xgap-4.27                `# unusable`      \
+        XMod-2.69                `# dependencies`  \
+        XModAlg-1.17             `# dependencies`
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

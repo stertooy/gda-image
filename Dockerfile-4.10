@@ -4,9 +4,9 @@ ENV GAP_HOME=/opt/gap
 
 # Prerequisites
 RUN apt-get update && \
-    apt-get install --yes --no-install-recommends \
-        libboost-dev  `# NormalizInterface`       \
-        polymake      `# polymaking`           && \
+    apt-get install --yes --no-install-recommends   \
+        libboost-dev   `# NormalizInterface`        \
+        polymake       `# polymaking`            && \
     rm -rf /var/lib/apt/lists/*
 
 # Download GAP packages
@@ -15,10 +15,10 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf \
-        itc-1.5                       `# dependencies`  \
-        PolymakeInterface-2019.06.01  `# unusable`      \
-        xgap-4.30                     `# unusable`      
+    rm -rf                                                \
+        itc-1.5                        `# dependencies`   \
+        PolymakeInterface-2019.06.01   `# unusable`       \
+        xgap-4.30                      `# unusable`      
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

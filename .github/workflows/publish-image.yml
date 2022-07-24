@@ -62,18 +62,18 @@ jobs:
           PACKAGES=$(tr "\n" " " < ${{ inputs.type }}/packages.txt)
           sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
           
-      #- name: Log in to Docker Hub
-      #  uses: docker/login-action@v2
-      #  with:
-      #    username: ${{ github.repository_owner }}
-      #    password: ${{ secrets.DOCKER_TOKEN }}
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.DOCKER_TOKEN }}
 
-      #- name: Log in to GitHub Container Registry
-      #  uses: docker/login-action@v2
-      #  with:
-      #    registry: ${{ env.REGISTRY }}
-      #    username: ${{ github.actor }}
-      #    password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Extract Docker metadata
         id: meta

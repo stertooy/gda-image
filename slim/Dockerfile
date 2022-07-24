@@ -10,16 +10,16 @@ RUN <<EOF
     apt update
     apt upgrade
     apt install --yes --no-install-recommends   \
-        autoconf                                    \
-        build-essential                             \
-        ca-certificates                             \
-        git                                         \
-        libgmp-dev                                  \
-        libncurses-dev        `# Browse`            \
-        libtool                                     \
-        pari-gp               `# Alnuth`            \
-        netbase               `# IO`                \
-        wget                                        \
+        autoconf                                \
+        build-essential                         \
+        ca-certificates                         \
+        git                                     \
+        libgmp-dev                              \
+        libncurses-dev        `# Browse`        \
+        libtool                                 \
+        pari-gp               `# Alnuth`        \
+        netbase               `# IO`            \
+        wget                                    \
         zlib1g-dev
     rm -rf /var/lib/apt/lists/*
 EOF
@@ -52,7 +52,41 @@ RUN <<EOF
     do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
         if ! cat << '        PKGS' | grep -Fwq "$pkgBase"
-            [[PACKAGES]]
+            aclib
+            alnuth
+            atlasrep
+            autodoc
+            autpgrp
+            browse
+            carat
+            caratinterface
+            crisp
+            cryst
+            crystcat
+            ctbllib
+            factint
+            fga
+            forms
+            gapdoc
+            genss
+            io
+            irredsol
+            laguna
+            orb
+            polenta
+            polycyclic
+            primgrp
+            profiling
+            radiroot
+            recog
+            recogbase
+            resclasses
+            smallgrp
+            sophus
+            spinsym
+            tomlib
+            transgrp
+            utils
         PKGS
         then 
             rm -rf $pkg

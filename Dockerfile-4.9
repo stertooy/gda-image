@@ -16,12 +16,12 @@ RUN cd ${GAP_HOME} && \
     make bootstrap-pkg-full && \
     rm packages*.tar.gz && \
     cd ${GAP_HOME}/pkg && \
-    rm -rf \
-        itc-1.5 \
-        linboxing \
-        PolymakeInterface \
-        qaos-1.6 \
-        xgap-4.27
+    rm -rf      \
+        itc-1.5            `# dependencies`  \
+        linboxing          `# unusable`      \
+        PolymakeInterface  `# unusable`      \
+        qaos-1.6           `# unusable`      \
+        xgap-4.27          `# unusable`      
 
 # Build GAP packages
 RUN cd ${GAP_HOME}/pkg && \

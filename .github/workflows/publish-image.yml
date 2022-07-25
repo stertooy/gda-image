@@ -48,7 +48,7 @@ jobs:
           
           # Add image name to Dockerfile
           if [ "${{ inputs.TYPE }}" = "full" ]; then
-              IMAGE="${{ inputs.BRANCH }}-slim"
+              IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.BRANCH }}-slim"
           else
               IMAGE=$(grep "${{ inputs.BRANCH }}" slim/images.txt | cut -d'=' -f2)
           fi

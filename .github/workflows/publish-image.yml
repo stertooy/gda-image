@@ -45,7 +45,11 @@ jobs:
       - name: Compose Dockerfile
         shell: bash
         run: |
-          mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
+          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
+              mv ${{ inputs.BRANCH }}/Dockerfile Dockerfile
+          else
+              mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
+          fi
           
           # Add image name to Dockerfile
           if [ "${{ inputs.BRANCH }}" = "tex" ]; then

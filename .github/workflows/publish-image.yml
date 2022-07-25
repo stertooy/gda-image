@@ -63,7 +63,7 @@ jobs:
           
           # Add dependencies to Dockerfile
           if [ "${{ inputs.BRANCH }}" = "tex" ]; then
-              DEPENDENCIES=$(tr "\n" " " < dependencies.txt)
+              DEPENDENCIES=$(tr "\n" " " < ${{ inputs.BRANCH }}/dependencies.txt)
           else
               DEPENDENCIES=$(tr "\n" " " < ${{ inputs.TYPE }}/dependencies/${{ inputs.BRANCH }}.txt)
           fi

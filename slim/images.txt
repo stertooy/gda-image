@@ -1,0 +1,4 @@
+4.9=debian:stretch-slim
+4.10=debian:buster-slim
+4.11=debian:bullseye-slim
+master=debian:bookworm-slim

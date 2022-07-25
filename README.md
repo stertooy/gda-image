@@ -10,7 +10,6 @@ The following images are available:
 - `4.11`, `4.11-slim`: contains the GAP `stable-4.11` branch, built upon Debian's `bullseye-slim` image;
 - `4.10`, `4.10-slim`: contains the GAP `stable-4.10` branch, built upon Debian's `buster-slim` image;
 - `4.9`, `4.9-slim`: contains the GAP `stable-4.9` branch, built upon Debian's `stretch-slim` image;
-- `tex`, `tex-slim`: contains the GAP `master` branch, as well as texlive-packages required to build manuals, built upon Debian's `bookworm-slim` image.
 
 ## Available packages
 
@@ -59,5 +58,3 @@ The `slim` images contain only a selection of the available packages:
 
 ## TODO
 - Set appropriate cron schedules
-- finish 4.11, master and tex
-- create dockerfiles in a more dynamic way?

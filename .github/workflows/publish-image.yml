@@ -11,6 +11,7 @@ on:
           - "4.11"
           - "4.10"
           - "4.9"
+          - "tex"
       TYPE:
         required: true
         type: choice
@@ -47,7 +48,9 @@ jobs:
           mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
           
           # Add image name to Dockerfile
-          if [ "${{ inputs.TYPE }}" = "full" ]; then
+          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
+              IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:master${{ inputs.TYPE == 'slim' && '-slim' || '' }}"
+          elif [ "${{ inputs.TYPE }}" = "full" ]; then
               IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.BRANCH }}-slim"
           else
               IMAGE=$(grep "${{ inputs.BRANCH }}" slim/images.txt | cut -d'=' -f2)
@@ -59,11 +62,17 @@ jobs:
           sed -i -e "s/{{BRANCH}}/$BRANCH/" Dockerfile
           
           # Add dependencies to Dockerfile
-          DEPENDENCIES=$(tr "\n" " " < ${{ inputs.TYPE }}/dependencies/${{ inputs.BRANCH }}.txt)
+          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
+              DEPENDENCIES=$(tr "\n" " " < dependencies.txt)
+          else
+              DEPENDENCIES=$(tr "\n" " " < ${{ inputs.TYPE }}/dependencies/${{ inputs.BRANCH }}.txt)
+          fi
           sed -i -e "s/{{DEPENDENCIES}}/$DEPENDENCIES/" Dockerfile
           
           # Add packages to Dockerfile
-          PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/packages.txt)
+          if [ "${{ inputs.BRANCH }}" != "tex" ]; then
+              PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/packages.txt)
+          fi
           sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
           
       - name: Log in to Docker Hub
@@ -88,7 +97,6 @@ jobs:
             ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
             type=raw,value=${{ inputs.BRANCH }}${{ inputs.TYPE == 'slim' && '-slim' || '' }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:

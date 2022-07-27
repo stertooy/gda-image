@@ -50,6 +50,15 @@ RUN <<EOF
     ../bin/BuildPackages.sh
 EOF
 
+# Remove stuff
+RUN <<EOF
+    apt-get autoremove --purge --yes \
+        autoconf \
+        git \
+        libtool \
+        zlib1g-dev
+EOF
+
 # Prepare for Github Actions use
 RUN <<EOF
     mkdir -p /tmp/gaproot/pkg

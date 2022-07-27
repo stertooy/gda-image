@@ -55,8 +55,7 @@ RUN <<EOF
     apt-get autoremove --purge --yes \
         autoconf \
         git \
-        libtool \
-        zlib1g-dev
+        libtool
 EOF
 
 # Prepare for Github Actions use

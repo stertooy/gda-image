@@ -1,0 +1,7 @@
+libgmp-dev
+libncurses-dev
+netbase
+pari-gp
+perl
+wget
+zlib1g-dev

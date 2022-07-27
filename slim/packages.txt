@@ -10,6 +10,7 @@ crisp
 cryst
 crystcat
 ctbllib
+cvec
 factint
 fga
 forms

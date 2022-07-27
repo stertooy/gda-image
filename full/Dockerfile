@@ -1,40 +1,60 @@
 # syntax=docker/dockerfile:1.3-labs
-FROM {{IMAGE}} as build
 
-ENV GAP_HOME=/opt/gap
+ARG GAP_HOME={{GAP_HOME}}
+ARG GAP_ROOT={{GAP_ROOT}}
+
+FROM {{BASE_IMAGE}} as build
+
+ARG GAP_HOME
+ARG GAP_ROOT
+ARG GAP_BRANCH={{GAP_BRANCH}}
+ARG GAP_PACKAGES={{GAP_PACKAGES}}
+ARG GAP_PKGS_URL={{GAP_PKGS_URL}}
+ARG TEMP_DEPS={{TEMP_DEPS}}
+ARG PERM_DEPS={{PERM_DEPS}}
 
 SHELL ["/bin/bash", "-c"]
 
-# Prerequisites
+# Install dependencies
 RUN <<EOF
     apt-get update
-    apt-get install --yes --no-install-recommends {{DEPENDENCIES}}
-    rm -rf /var/lib/apt/lists/*
+    apt-get upgrade --yes
+    apt-get install --yes --no-install-recommends ${TEMP_DEPS} ${PERM_DEPS}
 EOF
 
-# Download GAP packages
+# Download packages
 RUN <<EOF
-    cd ${GAP_HOME}
-    rm -rf pkg
-    make bootstrap-pkg-full
-    rm packages*.tar.gz
     cd ${GAP_HOME}/pkg
+    rm -rf pkg
+    wget -q ${GAP_PKGS_URL} -O packages.tar.gz
+    tar -xzf packages.tar.gz
+    rm packages.tar.gz
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        if grep -Fwq "$pkgBase" <<< "{{PACKAGES}}"; then
+        if grep -Fwq "$pkgBase" <<< "${GAP_PACKAGES}"; then
             rm -rf $pkg
         fi
     done
 EOF
 
-# Build GAP packages
-RUN <<EOF
-    cd ${GAP_HOME}/pkg
+# Build packages
+RUN cd opt/gap/pkg && \
     ../bin/BuildPackages.sh
+
+# Delete temporary dependencies
+RUN <<EOF
+    apt-get autoremove --purge --yes ${TEMP_DEPS}
+    rm -rf /var/lib/apt/lists/*
 EOF
 
 # Squash
 FROM scratch
 COPY --from=build / /
+
+# Make GAP_HOME and GAP_ROOT available in container
+ARG GAP_HOME
+ENV GAP_HOME ${GAP_HOME}
+ARG GAP_ROOT
+ENV GAP_ROOT ${GAP_ROOT}
 
 CMD ["bash"]

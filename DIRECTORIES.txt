@@ -1,0 +1,2 @@
+GAP_HOME=/opt/gap
+GAP_ROOT=/tmp/gaproot

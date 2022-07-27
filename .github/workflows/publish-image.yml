@@ -65,7 +65,7 @@ jobs:
           sed -i -e "s#{{GAP_BRANCH}}#$GAP_BRANCH#" Dockerfile
           
           # Add GAP_PACKAGES to Dockerfile
-          GAP_PACKAGES=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/GAP_PACKAGES.txt | cut -d'=' -f2)
+          GAP_PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/GAP_PACKAGES.txt)
           sed -i -e "s#{{GAP_PACKAGES}}#$GAP_PACKAGES#" Dockerfile
           
           # Add GAP_PKGS_URL to Dockerfile

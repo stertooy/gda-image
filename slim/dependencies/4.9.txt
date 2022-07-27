@@ -1,7 +1,6 @@
 autoconf
 build-essential
 ca-certificates
-git
 libgmp-dev
 libncurses-dev    `# Browse `
 libtool

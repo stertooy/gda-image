@@ -69,7 +69,7 @@ jobs:
           sed -i -e "s#{{GAP_PACKAGES}}#$GAP_PACKAGES#" Dockerfile
           
           # Add GAP_PKGS_URL to Dockerfile
-          GAP_GAP_PKGS_URL=$(grep "${{ inputs.BRANCH }}" shared/GAP_PKGS_URL.txt | cut -d'=' -f2)
+          GAP_PKGS_URL=$(grep "${{ inputs.BRANCH }}" shared/GAP_PKGS_URL.txt | cut -d'=' -f2)
           sed -i -e "s#{{GAP_PKGS_URL}}#$GAP_PKGS_URL#" Dockerfile
           
           # Add TEMP_DEPS to Dockerfile

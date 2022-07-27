@@ -45,39 +45,36 @@ jobs:
       - name: Compose Dockerfile
         shell: bash
         run: |
-          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
-              mv ${{ inputs.BRANCH }}/Dockerfile Dockerfile
-          else
-              mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
-          fi
+          # Choose correct dockerfile
+          mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
           
-          # Add image name to Dockerfile
-          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
-              IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:master${{ inputs.TYPE == 'slim' && '-slim' || '' }}"
-          elif [ "${{ inputs.TYPE }}" = "full" ]; then
-              IMAGE="${{ env.REGISTRY }}/${{ github.repository }}:${{ inputs.BRANCH }}-slim"
-          else
-              IMAGE=$(grep "${{ inputs.BRANCH }}" slim/images.txt | cut -d'=' -f2)
-          fi
-          sed -i -e "s#{{IMAGE}}#$IMAGE#" Dockerfile
+          # Add GAP_HOME to Dockerfile
+          GAP_HOME=$(grep "GAP_HOME" shared/DIRECTORIES.txt | cut -d'=' -f2)
+          sed -i -e "s#{{GAP_HOME}}#$GAP_HOME#" Dockerfile
           
-          # Add GAP branch name to Dockerfile
-          BRANCH=$(sed '/master/!s/^/stable-&/' <<< "${{ inputs.BRANCH }}")
-          sed -i -e "s/{{BRANCH}}/$BRANCH/" Dockerfile
+          # Add GAP_ROOT to Dockerfile
+          GAP_ROOT=$(grep "GAP_ROOT" shared/DIRECTORIES.txt | cut -d'=' -f2)
+          sed -i -e "s#{{GAP_ROOT}}#$GAP_ROOT#" Dockerfile
           
-          # Add dependencies to Dockerfile
-          if [ "${{ inputs.BRANCH }}" = "tex" ]; then
-              DEPENDENCIES=$(tr "\n" " " < ${{ inputs.BRANCH }}/dependencies.txt)
-          else
-              DEPENDENCIES=$(tr "\n" " " < ${{ inputs.TYPE }}/dependencies/${{ inputs.BRANCH }}.txt)
-          fi
-          sed -i -e "s/{{DEPENDENCIES}}/$DEPENDENCIES/" Dockerfile
+          # Add GAP_BRANCH to Dockerfile
+          GAP_BRANCH=$(grep "${{ inputs.BRANCH }}" shared/GAP_BRANCH.txt | cut -d'=' -f2)
+          sed -i -e "s#{{GAP_BRANCH}}#$GAP_BRANCH#" Dockerfile
           
-          # Add packages to Dockerfile
-          if [ "${{ inputs.BRANCH }}" != "tex" ]; then
-              PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/packages.txt)
-          fi
-          sed -i -e "s/{{PACKAGES}}/$PACKAGES/" Dockerfile
+          # Add GAP_PACKAGES to Dockerfile
+          GAP_PACKAGES=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/GAP_BRANCH.txt | cut -d'=' -f2)
+          sed -i -e "s#{{GAP_PACKAGES}}#$GAP_PACKAGES#" Dockerfile
+          
+          # Add GAP_PKGS_URL to Dockerfile
+          GAP_GAP_PKGS_URL=$(grep "${{ inputs.BRANCH }}" shared/GAP_PKGS_URL.txt | cut -d'=' -f2)
+          sed -i -e "s#{{GAP_GAP_PKGS_URL}}#$GAP_PKGS_URL#" Dockerfile
+          
+          # Add TEMP_DEPS to Dockerfile
+          TEMP_DEPS=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/TEMP_DEPS.txt | cut -d'=' -f2)
+          sed -i -e "s#{{TEMP_DEPS}}#$TEMP_DEPS#" Dockerfile
+          
+          # Add PERM_DEPS to Dockerfile
+          PERM_DEPS=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/PERM_DEPS.txt | cut -d'=' -f2)
+          sed -i -e "s#{{PERM_DEPS}}#$PERM_DEPS#" Dockerfile
           
       - name: Log in to Docker Hub
         uses: docker/login-action@v2

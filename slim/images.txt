@@ -1,4 +1,4 @@
-4.9=debian:stretch-slim
-4.10=debian:buster-slim
-4.11=debian:bullseye-slim
-master=debian:bookworm-slim
+4.9=ubuntu:bionic
+4.10=ubuntu:bionic
+4.11=ubuntu:focal
+master=ubuntu:jammy

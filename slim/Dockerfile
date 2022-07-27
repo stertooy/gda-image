@@ -1,13 +1,14 @@
 # syntax=docker/dockerfile:1.3-labs
 
-ARG GAP_BRANCH={{GAP_BRANCH}}
 ARG GAP_HOME=/opt/gap
 ARG GAP_ROOT=/tmp/gaproot
+
+ARG GAP_BRANCH={{GAP_BRANCH}}
 ARG GAP_PACKAGES={{GAP_PACKAGES}}
 ARG GAP_PKGS_URL={{GAP_PKGS_URL}}
 ARG BASE_IMAGE={{BASE_IMAGE}}
-ARG TEMP_DEPENDENCIES={{TEMP_DEPENDENCIES}}
-ARG PERM_DEPENDENCIES={{PERM_DEPENDENCIES}}
+ARG TEMP_DEPS={{TEMP_DEPS}}
+ARG PERM_DEPS={{PERM_DEPS}}
 
 FROM ${BASE_IMAGE} as build
 
@@ -24,7 +25,7 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
     apt-get update
     apt-get upgrade --yes
-    apt-get install --yes --no-install-recommends ${TEMP_DEPENDENCIES} ${PERM_DEPENDENCIES}
+    apt-get install --yes --no-install-recommends ${TEMP_DEPS} ${PERM_DEPS}
 EOF
 
 # Download GAP
@@ -68,7 +69,7 @@ RUN cd opt/gap/pkg && \
 
 # Delete temporary dependencies
 RUN <<EOF
-    apt-get autoremove --purge --yes ${TEMP_DEPENDENCIES}
+    apt-get autoremove --purge --yes ${TEMP_DEPS}
     rm -rf /var/lib/apt/lists/*
 EOF
 

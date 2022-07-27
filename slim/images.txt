@@ -2,3 +2,4 @@
 4.10=ubuntu:bionic
 4.11=ubuntu:focal
 master=ubuntu:jammy
+tex=ubuntu:jammy

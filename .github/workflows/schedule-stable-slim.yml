@@ -1,23 +1,25 @@
 on:
   schedule:
-    - cron: '35 * * * *'
+    - cron: '47 * * * *'
 
 jobs:
-  scheduled-slim-build:
-    name: "Publish GAP-stable-slim Docker images (scheduled)"
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - BRANCH: "4.11"
-            TYPE: "slim"
-          - BRANCH: "4.10"
-            TYPE: "slim"
-          - BRANCH: "4.9"
-            TYPE: "slim"
-
-    steps:
-      - uses: stertooy/gda-image/publish@v1
-        with:
-          BRANCH: ${{ matrix.BRANCH }}
-          TYPE: ${{ matrix.TYPE }}
+  GAP-4-11-slim:
+    name: "Publish GAP-4.11-slim Docker image (scheduled)"
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    with:
+      BRANCH: "4.11"
+      TYPE: "slim"
+      
+  GAP-4-10-slim:
+    name: "Publish GAP-4.10-slim Docker image (scheduled)"
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    with:
+      BRANCH: "4.10"
+      TYPE: "slim"
+      
+  GAP-4-9-slim:
+    name: "Publish GAP-4.9-slim Docker image (scheduled)"
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    with:
+      BRANCH: "4.9"
+      TYPE: "slim"

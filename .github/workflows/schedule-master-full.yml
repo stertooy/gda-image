@@ -1,0 +1,20 @@
+name: "Publish GAP-master-full Docker images (scheduled)"
+
+on:
+  schedule:
+    - cron: '37 5 * * 6'
+
+jobs:
+  GAP-master-slim:
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
+    with:
+      BRANCH: "master"
+      TYPE: "full"
+      
+  GAP-tex-slim:
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
+    with:
+      BRANCH: "tex"
+      TYPE: "full"

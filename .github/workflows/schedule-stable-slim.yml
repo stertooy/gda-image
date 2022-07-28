@@ -1,0 +1,23 @@
+on:
+  schedule:
+    - cron: '35 * * * *'
+
+jobs:
+  scheduled-slim-build:
+    name: "Publish GAP-stable-slim Docker images (scheduled)"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - BRANCH: "4.11"
+            TYPE: "slim"
+          - BRANCH: "4.10"
+            TYPE: "slim"
+          - BRANCH: "4.9"
+            TYPE: "slim"
+
+    steps:
+      - uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+        with:
+          BRANCH: ${{ matrix.BRANCH }}
+          TYPE: ${{ matrix.TYPE }}

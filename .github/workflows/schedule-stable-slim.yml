@@ -2,11 +2,10 @@ name: "Publish GAP-stable-slim Docker images (scheduled)"
 
 on:
   schedule:
-    - cron: '5/10 * * * *'
+    - cron: '37 3 7 * *'
 
 jobs:
   GAP-4-11-slim:
-    name: "Publish GAP-4.11-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:
@@ -14,7 +13,6 @@ jobs:
       TYPE: "slim"
       
   GAP-4-10-slim:
-    name: "Publish GAP-4.10-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:
@@ -22,7 +20,6 @@ jobs:
       TYPE: "slim"
       
   GAP-4-9-slim:
-    name: "Publish GAP-4.9-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:

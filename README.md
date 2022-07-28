@@ -25,7 +25,8 @@ The full images contain the following:
   * almost all GAP packages that come with GAP by default, except:
     * linboxing
     * itc
-    * PolymakeInterface
+    * polymakeinterface
+    * qaos
     * xgap
   * some of the external dependencies used by GAP packages:
     * 4ti2

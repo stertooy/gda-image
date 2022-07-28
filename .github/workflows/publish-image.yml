@@ -49,19 +49,19 @@ jobs:
           mv ${{ inputs.TYPE }}/Dockerfile Dockerfile
           
           # Add GAP_HOME to Dockerfile
-          GAP_HOME=$(grep "GAP_HOME" shared/DIRECTORIES.txt | cut -d'=' -f2)
+          GAP_HOME=$(grep "GAP_HOME=" shared/DIRECTORIES.txt | cut -d'=' -f2)
           sed -i -e "s#{{GAP_HOME}}#$GAP_HOME#" Dockerfile
           
           # Add GAP_ROOT to Dockerfile
-          GAP_ROOT=$(grep "GAP_ROOT" shared/DIRECTORIES.txt | cut -d'=' -f2)
+          GAP_ROOT=$(grep "GAP_ROOT=" shared/DIRECTORIES.txt | cut -d'=' -f2)
           sed -i -e "s#{{GAP_ROOT}}#$GAP_ROOT#" Dockerfile
           
           # Add BASE_IMAGE to Dockerfile
-          BASE_IMAGE=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/BASE_IMAGE.txt | cut -d'=' -f2)
+          BASE_IMAGE=$(grep "${{ inputs.BRANCH }}=" ${{ inputs.TYPE }}/BASE_IMAGE.txt | cut -d'=' -f2)
           sed -i -e "s#{{BASE_IMAGE}}#$BASE_IMAGE#" Dockerfile
           
           # Add GAP_BRANCH to Dockerfile
-          GAP_BRANCH=$(grep "${{ inputs.BRANCH }}" shared/GAP_BRANCH.txt | cut -d'=' -f2)
+          GAP_BRANCH=$(grep "${{ inputs.BRANCH }}=" shared/GAP_BRANCH.txt | cut -d'=' -f2)
           sed -i -e "s#{{GAP_BRANCH}}#$GAP_BRANCH#" Dockerfile
           
           # Add GAP_PACKAGES to Dockerfile
@@ -69,15 +69,15 @@ jobs:
           sed -i -e "s#{{GAP_PACKAGES}}#$GAP_PACKAGES#" Dockerfile
           
           # Add GAP_PKGS_URL to Dockerfile
-          GAP_PKGS_URL=$(grep "${{ inputs.BRANCH }}" shared/GAP_PKGS_URL.txt | cut -d'=' -f2)
+          GAP_PKGS_URL=$(grep "${{ inputs.BRANCH }}=" shared/GAP_PKGS_URL.txt | cut -d'=' -f2)
           sed -i -e "s#{{GAP_PKGS_URL}}#$GAP_PKGS_URL#" Dockerfile
           
           # Add TEMP_DEPS to Dockerfile
-          TEMP_DEPS=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/TEMP_DEPS.txt | cut -d'=' -f2)
+          TEMP_DEPS=$(grep "${{ inputs.BRANCH }}=" ${{ inputs.TYPE }}/TEMP_DEPS.txt | cut -d'=' -f2)
           sed -i -e "s#{{TEMP_DEPS}}#$TEMP_DEPS#" Dockerfile
           
           # Add PERM_DEPS to Dockerfile
-          PERM_DEPS=$(grep "${{ inputs.BRANCH }}" ${{ inputs.TYPE }}/PERM_DEPS.txt | cut -d'=' -f2)
+          PERM_DEPS=$(grep "${{ inputs.BRANCH }}=" ${{ inputs.TYPE }}/PERM_DEPS.txt | cut -d'=' -f2)
           sed -i -e "s#{{PERM_DEPS}}#$PERM_DEPS#" Dockerfile
           
       - name: Log in to Docker Hub

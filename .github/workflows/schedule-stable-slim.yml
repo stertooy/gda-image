@@ -8,6 +8,7 @@ jobs:
   GAP-4-11-slim:
     name: "Publish GAP-4.11-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
     with:
       BRANCH: "4.11"
       TYPE: "slim"
@@ -15,6 +16,7 @@ jobs:
   GAP-4-10-slim:
     name: "Publish GAP-4.10-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
     with:
       BRANCH: "4.10"
       TYPE: "slim"
@@ -22,6 +24,7 @@ jobs:
   GAP-4-9-slim:
     name: "Publish GAP-4.9-slim Docker image (scheduled)"
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
     with:
       BRANCH: "4.9"
       TYPE: "slim"

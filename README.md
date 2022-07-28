@@ -18,9 +18,10 @@ The following images are available:
 
 The full images contain the following:
   * tools to install and build additional packages:
+    * autoconf
     * build-essential
     * git
-    * ...
+    * libtool
   * almost all GAP packages that come with GAP by default, except:
     * linboxing
     * itc
@@ -43,7 +44,8 @@ The full images contain the following:
 ### Slim images
   
 The `slim` images are much smaller, and contain the following:
-  * no tools to install and build additional packages;
+  * tools to install (but not build) additional packages:
+    * git
   * more or less only those GAP packages that GAP loads by default:
     * aclib
     * alnuth

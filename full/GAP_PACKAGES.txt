@@ -1,4 +1,5 @@
 linboxing
 itc
-PolymakeInterface
+polymakeinterface
+qaos
 xgap

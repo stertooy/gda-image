@@ -17,7 +17,7 @@ jobs:
             TYPE: "slim"
 
     steps:
-      - uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+      - uses: stertooy/gda-image/publish@v1
         with:
           BRANCH: ${{ matrix.BRANCH }}
           TYPE: ${{ matrix.TYPE }}

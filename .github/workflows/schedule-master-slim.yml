@@ -1,4 +1,4 @@
-name: "Publish GAP-stable-slim Docker images (scheduled)"
+name: "Publish GAP-master-slim Docker images (scheduled)"
 
 on:
   schedule:

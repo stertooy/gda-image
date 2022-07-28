@@ -2,7 +2,7 @@ name: "Publish GAP-stable-slim Docker images (scheduled)"
 
 on:
   schedule:
-    - cron: '13 * * * *'
+    - cron: '5/10 * * * *'
 
 jobs:
   GAP-4-11-slim:

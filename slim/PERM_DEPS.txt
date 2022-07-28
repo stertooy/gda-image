@@ -1,5 +1,5 @@
-4.9=libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
-4.10=libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
-4.11=libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
-master=libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
-tex=libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+4.9=git libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
+4.10=git libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
+4.11=git libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
+master=git libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev
+tex=git libgmp-dev libncurses-dev netbase pari-gp perl wget zlib1g-dev texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended

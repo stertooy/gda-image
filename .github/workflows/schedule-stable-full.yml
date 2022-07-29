@@ -6,21 +6,21 @@ on:
     - cron: '37 5 7 * *'
 
 jobs:
-  GAP-4-11-slim:
+  GAP-4-11-full:
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:
       BRANCH: "4.11"
       TYPE: "full"
       
-  GAP-4-10-slim:
+  GAP-4-10-full:
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:
       BRANCH: "4.10"
       TYPE: "full"
       
-  GAP-4-9-slim:
+  GAP-4-9-full:
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:

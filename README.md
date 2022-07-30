@@ -37,16 +37,17 @@ The full images contain the following:
     * mpfi
     * mpfr
     * ncurses
+    * netbase
     * pari-gp
     * polymake
     * singular
+    * wget
     * zmq
   
 ### Slim images
   
-The `slim` images are much smaller, and contain the following:
-  * tools to install (but not build) additional packages:
-    * git
+The `slim` images are much smaller. They contain the following:
+  * no tools to install or build additional packages;
   * more or less only those GAP packages that GAP loads by default:
     * aclib
     * alnuth
@@ -84,7 +85,6 @@ The `slim` images are much smaller, and contain the following:
     * utils
   * some of the external dependencies used by these GAP packages:
     * ncurses
+    * netbase
     * pari-gp
-
-## TODO
-- Set appropriate cron schedules
+    * wget

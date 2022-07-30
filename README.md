@@ -22,7 +22,7 @@ The full images contain the following:
     * build-essential
     * git
     * libtool
-  * almost all GAP packages that come with GAP by default, except:
+  * all GAP packages that GAP is distributed with, except:
     * linboxing
     * itc
     * polymakeinterface

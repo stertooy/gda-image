@@ -1,5 +1,5 @@
-4.9=autoconf build-essential ca-certificates git libtool
-4.10=autoconf build-essential ca-certificates git libtool
-4.11=autoconf build-essential ca-certificates git libtool
-master=autoconf build-essential ca-certificates git libtool
-tex=autoconf build-essential ca-certificates git libtool
+4.9=    autoconf build-essential ca-certificates git libgmp-dev libncurses-dev libtool zlib1g-dev
+4.10=   autoconf build-essential ca-certificates git libgmp-dev libncurses-dev libtool zlib1g-dev
+4.11=   autoconf build-essential ca-certificates git libgmp-dev libncurses-dev libtool zlib1g-dev
+master= autoconf build-essential ca-certificates git libgmp-dev libncurses-dev libtool zlib1g-dev
+tex=    autoconf build-essential ca-certificates git libgmp-dev libncurses-dev libtool zlib1g-dev

@@ -1,5 +1,5 @@
-4.9=autoconf build-essential libtool
-4.10=autoconf build-essential libtool
-4.11=autoconf build-essential libtool
-master=autoconf build-essential libtool
-tex=autoconf build-essential libtool
+4.9=autoconf build-essential git libtool
+4.10=autoconf build-essential ca-certificates libtool
+4.11=autoconf build-essential ca-certificates git libtool
+master=autoconf build-essential ca-certificates git libtool
+tex=autoconf build-essential ca-certificates git libtool

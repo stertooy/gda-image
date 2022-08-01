@@ -18,7 +18,7 @@ Each image is built on an LTS version of Ubuntu that was released around the sam
 
 ### Full images
 
-The full images contain the following:
+The full images are rather large (650 MB - 1.1 GB when compressed). They contain the following:
   * tools to install and build additional packages:
     * autoconf
     * build-essential
@@ -48,7 +48,7 @@ The full images contain the following:
   
 ### Slim images
   
-The `slim` images are much smaller. They contain the following:
+The `slim` images are much smaller (250 MB - 450 MB when compressed). They contain the following:
   * tools to install (but not build) additional packages:
     * git
   * more or less only those GAP packages that GAP loads by default:
@@ -94,7 +94,7 @@ The `slim` images are much smaller. They contain the following:
 
 ### Minimal images
   
-The `min` images are even smaller. They contain the following:
+The `min` images are even smaller (120 MB - 175 MB when compressed). They contain the following:
   * tools to install (but not build) additional packages:
     * git
   * only those GAP packages needed to run GAP, to build manuals and to make coverage reports:

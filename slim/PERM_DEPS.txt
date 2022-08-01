@@ -1,5 +1,5 @@
-4.9=    ca-certificates git libgmp10 libncurses5 netbase pari-gp perl wget zlib1g
-4.10=   ca-certificates git libgmp10 libncurses5 netbase pari-gp perl wget zlib1g
-4.11=   ca-certificates git libgmp10 libncurses6 netbase pari-gp perl wget zlib1g
-master= ca-certificates git libgmp10 libncurses6 netbase pari-gp perl wget zlib1g
-tex=    ca-certificates git libgmp10 libncurses6 netbase pari-gp perl wget zlib1g texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended
+4.9=    libncurses5 pari-gp wget
+4.10=   libncurses5 pari-gp wget
+4.11=   libncurses6 pari-gp wget
+master= libncurses6 pari-gp wget
+tex=    libncurses6 pari-gp wget texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended

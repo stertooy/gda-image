@@ -18,6 +18,7 @@ on:
         options:
           - "full"
           - "slim"
+          - "min"
   workflow_call:
     inputs:
       BRANCH:
@@ -101,7 +102,7 @@ jobs:
             ${{ github.repository }}
             ${{ env.REGISTRY }}/${{ github.repository }}
           tags: |
-            type=raw,value=${{ inputs.BRANCH }}${{ inputs.TYPE == 'slim' && '-slim' || '' }}
+            type=raw,value=${{ inputs.BRANCH }}${{ inputs.TYPE == 'slim' && '-slim' || '' }}${{ inputs.TYPE == 'min' && '-min' || '' }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:

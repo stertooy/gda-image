@@ -1,5 +1,5 @@
-4.9=    ghcr.io/stertooy/gda-image:4.9-slim
-4.10=   ghcr.io/stertooy/gda-image:4.10-slim
-4.11=   ghcr.io/stertooy/gda-image:4.11-slim
-master= ghcr.io/stertooy/gda-image:master-slim
-tex=    ghcr.io/stertooy/gda-image:tex-slim
+4.9=    ghcr.io/stertooy/gda-image:4.9-min
+4.10=   ghcr.io/stertooy/gda-image:4.10-min
+4.11=   ghcr.io/stertooy/gda-image:4.11-min
+master= ghcr.io/stertooy/gda-image:master-min
+tex=    ghcr.io/stertooy/gda-image:tex-min

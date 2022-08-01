@@ -22,26 +22,6 @@ RUN <<EOF
     apt-get install --yes --no-install-recommends ${TEMP_DEPS} ${PERM_DEPS}
 EOF
 
-# Download GAP
-RUN <<EOF
-    cd /tmp
-    wget -q https://github.com/gap-system/gap/archive/${GAP_BRANCH}.tar.gz -O gap.tar.gz
-    tar -xzf gap.tar.gz
-    rm -rf gap.tar.gz
-    mv gap* ${GAP_HOME}
-    cd ${GAP_HOME}
-    rm -rf dev extern hpcgap
-EOF
-
-# Build GAP
-RUN <<EOF
-    cd ${GAP_HOME}
-    ./autogen.sh
-    ./configure
-    make
-    rm -rf obj cnf
-EOF
-
 # Download packages
 RUN <<EOF
     mkdir ${GAP_HOME}/pkg
@@ -65,13 +45,6 @@ RUN cd opt/gap/pkg && \
 RUN <<EOF
     apt-get autoremove --purge --yes ${TEMP_DEPS}
     rm -rf /var/lib/apt/lists/*
-EOF
-
-# Prepare for Github Actions use
-RUN <<EOF
-    mkdir -p /tmp/gaproot/pkg
-    printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh -l "%s;" --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap
-    chmod +x /usr/local/bin/gap
 EOF
 
 # Squash

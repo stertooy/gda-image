@@ -1,16 +1,18 @@
 # gda-image: GAP Docker images for GitHub Actions
 
-This repository contains (unofficial!) Docker images with GAP and its packages pre-installed inside a (slim) Ubuntu environment. They are not meant to be ran interactively - it is recommended to use the official GAP Docker images for that purpose: [master](https://github.com/gap-system/gap-docker-master), [4.11](https://github.com/gap-system/gap-docker-stable-4.11), [4.10](https://github.com/gap-system/gap-docker-stable-4.10) and [4.9](https://github.com/gap-system/gap-docker-stable-4.9).
+This repository contains (unofficial!) Docker images with GAP and its packages pre-installed inside a (minimal) Ubuntu environment. They are not meant to be ran interactively - it is recommended to use the official GAP Docker images for that purpose: [master](https://github.com/gap-system/gap-docker-master), [4.11](https://github.com/gap-system/gap-docker-stable-4.11), [4.10](https://github.com/gap-system/gap-docker-stable-4.10) and [4.9](https://github.com/gap-system/gap-docker-stable-4.9).
 
 ## Available images
 
 The following images are available:
 
-- `master`, `master-slim`: for testing on the `master` branch, built on Ubuntu 22.04 LTS (Jammy Jellyfish);
-- `4.11`, `4.11-slim`: for testing on the `stable-4.11` branch, built on Ubuntu 20.04 LTS (Focal Fossa);
-- `4.10`, `4.10-slim`: for testing on the `stable-4.10` branch, built on Ubuntu 18.04.6 LTS (Bionic Beaver);
-- `4.9`, `4.9-slim`: for testing on the `stable-4.9` branch, built on Ubuntu 18.04.6 LTS (Bionic Beaver);
-- `tex`, `tex-slim`: for building manuals, built on Ubuntu 22.04 LTS (Jammy Jellyfish).
+- `master`, `master-slim`, `master-min`;
+- `4.11`, `4.11-slim`, `4.11-min`;
+- `4.10`, `4.10-slim`, `4.10-min`;
+- `4.9`, `4.9-slim`, `4.9-min`;
+- `tex`, `tex-slim`, `tex-min`;
+
+Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP, i.e. 18.04 for `4.9` and `4.10`, 20.04 for `4.11` and 22.04 for `master`.
 
 ## Available packages
 
@@ -47,7 +49,8 @@ The full images contain the following:
 ### Slim images
   
 The `slim` images are much smaller. They contain the following:
-  * no tools to install or build additional packages;
+  * tools to install (but not build) additional packages:
+    * git
   * more or less only those GAP packages that GAP loads by default:
     * aclib
     * alnuth
@@ -88,3 +91,19 @@ The `slim` images are much smaller. They contain the following:
     * netbase
     * pari-gp
     * wget
+
+### Minimal images
+  
+The `min` images are even smaller. They contain the following:
+  * tools to install (but not build) additional packages:
+    * git
+  * only those GAP packages needed to run GAP, to build manuals and to make coverage reports:
+    * autodoc
+    * gapdoc
+    * io
+    * primgrp
+    * profiling
+    * smallgrp
+    * transgrp
+  * some of the external dependencies used by these GAP packages:
+    * netbase

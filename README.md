@@ -51,7 +51,7 @@ The full images are rather large (650 MB - 1.1 GB when compressed). They contain
 The `slim` images are much smaller (250 MB - 450 MB when compressed). They contain the following:
   * tools to install (but not build) additional packages:
     * git
-  * more or less only those GAP packages that GAP loads by default:
+  * more or less only those GAP packages that GAP loads by default, as well as those needed to build manuals and to make coverage reports:
     * aclib
     * alnuth
     * atlasrep

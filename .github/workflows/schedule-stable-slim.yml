@@ -3,7 +3,7 @@ name: "Publish GAP-stable-slim Docker images (scheduled)"
 on:
   workflow_dispatch:
   schedule:
-    - cron: '37 3 7 * *'
+    - cron: '37 5 7 * *'
 
 jobs:
   GAP-4-11-slim:

@@ -1,5 +1,6 @@
 4.9=    libncurses5 pari-gp wget
 4.10=   libncurses5 pari-gp wget
 4.11=   libncurses6 pari-gp wget
+4.12=   libncurses6 pari-gp wget
 master= libncurses6 pari-gp wget
 tex=    libncurses6 pari-gp wget texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended

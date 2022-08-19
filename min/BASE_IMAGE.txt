@@ -1,5 +1,6 @@
 4.9=    ubuntu:bionic
 4.10=   ubuntu:bionic
 4.11=   ubuntu:focal
+4.12=   ubuntu:jammy
 master= ubuntu:jammy
 tex=    ubuntu:jammy

@@ -1,5 +1,6 @@
 4.9=    automake gcc-multilib
 4.10=
 4.11=
+4.12=
 master=
 tex=

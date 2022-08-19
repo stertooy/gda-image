@@ -1,5 +1,6 @@
 4.9=    ca-certificates git libgmp10 netbase perl zlib1g
 4.10=   ca-certificates git libgmp10 netbase perl zlib1g
 4.11=   ca-certificates git libgmp10 netbase perl zlib1g
+4.12=   ca-certificates git libgmp10 netbase perl zlib1g
 master= ca-certificates git libgmp10 netbase perl zlib1g
 tex=    ca-certificates git libgmp10 netbase perl zlib1g texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended

@@ -39,8 +39,10 @@ RUN <<EOF
     ./autogen.sh
     ./configure
     make
-    rm -rf obj cnf
+    rm -rf .github benchmark cnf obj
 EOF
+
+
 
 # Download packages
 RUN <<EOF

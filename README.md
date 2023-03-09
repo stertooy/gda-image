@@ -64,6 +64,7 @@ The `slim` images are much smaller (250 MB - 450 MB when compressed). They conta
     * cryst
     * crystcat
     * ctbllib
+    * curlinterface
     * cvec
     * factint
     * fga
@@ -88,6 +89,7 @@ The `slim` images are much smaller (250 MB - 450 MB when compressed). They conta
     * transgrp
     * utils
   * some of the external dependencies used by these GAP packages:
+    * curl
     * ncurses
     * netbase
     * pari-gp

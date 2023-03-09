@@ -10,6 +10,7 @@ crisp
 cryst
 crystcat
 ctbllib
+curlinterface
 cvec
 factint
 fga

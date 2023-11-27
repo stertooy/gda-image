@@ -72,7 +72,7 @@ EOF
 # Prepare for Github Actions use
 RUN <<EOF
     mkdir -p /tmp/gaproot/pkg
-    printf '#!/bin/sh\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/bin/gap.sh -l "%s;" --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap
+    printf '#!/bin/bash\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/gap -l "%s;" --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
 EOF
 

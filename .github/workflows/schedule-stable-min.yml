@@ -6,6 +6,13 @@ on:
     - cron: '37 3 7 * *'
 
 jobs:
+  GAP-4-13-min:
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
+    secrets: inherit
+    with:
+      BRANCH: "4.13"
+      TYPE: "min"
+
   GAP-4-12-min:
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit

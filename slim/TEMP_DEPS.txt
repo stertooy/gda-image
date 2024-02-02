@@ -2,5 +2,6 @@
 4.10=   autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev
 4.11=   autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev
 4.12=   autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev
+4.13=   autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev
 master= autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev
 tex=    autoconf build-essential libgmp-dev libncurses-dev libtool zlib1g-dev

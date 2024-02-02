@@ -2,5 +2,6 @@
 4.10=https://www.gap-system.org/pub/gap/gap4pkgs/packages-stable-4.10.tar.gz
 4.11=https://www.gap-system.org/pub/gap/gap4pkgs/packages-stable-4.11.tar.gz
 4.12=https://github.com/gap-system/PackageDistro/releases/download/v4.12.2/packages.tar.gz
+4.13=https://github.com/gap-system/PackageDistro/releases/download/v4.13.0-alpha1/packages.tar.gz
 master=https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz
 tex=https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz

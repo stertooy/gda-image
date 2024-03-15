@@ -3,5 +3,5 @@
 4.11=   ubuntu:focal
 4.12=   ubuntu:jammy
 4.13=   ubuntu:noble
-master= ubuntu:jammy
-tex=    ubuntu:jammy
+master= ubuntu:noble
+tex=    ubuntu:noble

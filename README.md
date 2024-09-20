@@ -14,7 +14,7 @@ The following images are available:
 - `4.9`, `4.9-slim`, `4.9-min`;
 - `tex`, `tex-slim`, `tex-min`.
 
-Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP, i.e. 18.04 for `4.9` and `4.10`, 20.04 for `4.11`, 22.04 for `4.12` and 24.04 for `4.13`, `master` and `tex`.
+Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP (or newer if said version is no longer supported), i.e. 20.04 for `4.9`, `4.10` and `4.11`, 22.04 for `4.12` and 24.04 for `4.13`, `master` and `tex`.
 
 ## Available packages
 

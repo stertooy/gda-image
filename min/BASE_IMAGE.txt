@@ -1,5 +1,5 @@
-4.9=    ubuntu:bionic
-4.10=   ubuntu:bionic
+4.9=    ubuntu:focal
+4.10=   ubuntu:focal
 4.11=   ubuntu:focal
 4.12=   ubuntu:jammy
 4.13=   ubuntu:noble

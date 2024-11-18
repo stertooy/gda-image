@@ -3,6 +3,6 @@
 4.11=   ghcr.io/stertooy/gda-image:4.11-min
 4.12=   ghcr.io/stertooy/gda-image:4.12-min
 4.13=   ghcr.io/stertooy/gda-image:4.13-min
-4.13=   ghcr.io/stertooy/gda-image:4.14-min
+4.14=   ghcr.io/stertooy/gda-image:4.14-min
 master= ghcr.io/stertooy/gda-image:master-min
 tex=    ghcr.io/stertooy/gda-image:tex-min

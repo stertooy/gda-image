@@ -1,6 +1,7 @@
 name: "Publish GAP Docker images using stable releases (scheduled)"
 
 on:
+  workflow_call:
   workflow_dispatch:
   schedule:
     - cron: '37 5 7 * *'

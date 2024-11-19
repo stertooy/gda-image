@@ -31,9 +31,9 @@ Each image is built on an LTS version of Ubuntu that was released around the sam
 ## Available types
 
 The following types of images are available:
-  - `min`
-  - `slim`
   - `full`
+  - `slim`
+  - `min`
 
 ### Full images
 

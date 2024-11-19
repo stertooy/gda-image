@@ -12,7 +12,7 @@ jobs:
       matrix:
         VERSION: ["master","tex"]
         TYPE: ["min","slim","full"]
-    uses: stertooy/gda-image/.github/workflows/publish-image.yml@dev
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit
     with:
       VERSION: ${{ matrix.VERSION }}

@@ -6,7 +6,7 @@ on:
   schedule:
     - cron: '37 5 7 * *'
 jobs:
-  GAP-master:
+  GAP-stable:
     strategy:
       fail-fast: false
       matrix:

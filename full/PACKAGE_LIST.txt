@@ -1,4 +1,3 @@
-linboxing
 itc
 polymakeinterface
 qaos

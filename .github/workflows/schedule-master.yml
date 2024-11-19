@@ -9,6 +9,7 @@ on:
 jobs:
   GAP-master:
     strategy:
+      fail-fast: false
       matrix:
         VERSION: ["master","tex"]
         TYPE: ["min","slim","full"]

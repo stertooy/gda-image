@@ -18,7 +18,7 @@ The following versions of GAP are available:
   - `4.13.0`
   - `4.13.1`
   - `4.13.2`
-  - `4.14.0-beta-1`
+  - `4.14.0-beta1`
   - `master` (the current `master` branch of the GAP source code repository)
   - `tex` (the current `master` branch of the GAP source code repository, plus a minimal tex installation) 
 

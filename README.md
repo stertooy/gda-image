@@ -25,7 +25,7 @@ and TYPE is any of the following:
   - `full`
 
 Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP (or a newer LTS release if necessary):
-  - 20.04 for `4.9.0` -  `4.11.1`
+  - 20.04 for `4.19.0` -  `4.11.1`
   - 22.04 for `4.12.0` - `4.12.2`
   - 24.04 for `4.13.0` and later (including `master` and `tex`)
 

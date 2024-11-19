@@ -17,8 +17,8 @@ The images follow a naming schema of VERSION-TYPE, where VERSION is any of the f
   - `4.13.1`
   - `4.13.2`
   - `4.14.0-beta-1`
-  - `master`
-  - `tex`
+  - `master` (the current `master` branch of the GAP source code repository)
+  - `tex` (the current `master` branch of the GAP source code repository, plus a minimal tex installation) 
 
 and TYPE is any of the following:
   - `min`
@@ -35,21 +35,21 @@ Each image is built on an LTS version of Ubuntu that was released around the sam
 
 ### Full images
 
-The full images are rather large (500 MB - 1GB+ when compressed). They contain the following:
+The `full` images are rather large (500 MB - 1GB+ when compressed). They contain the following:
   * basic tools to install and build additional packages
   * all GAP packages that GAP is distributed with, except for packages that are defunct, withdrawn, or do not work in a standard GAP session
   * most of the external dependencies used by these GAP packages
   
 ### Slim images
   
-The `slim` images are much smaller (250 MB - 500 MB when compressed). They contain the following:
+The `slim` images are much smaller (250 MB - 350 MB when compressed). They contain the following:
   * minimal tools to install (but not build) additional packages
   * the GAP packages that GAP loads by default, as well as those needed to build manuals and to make coverage reports
   * most of the external dependencies used by these GAP packages
 
 ### Minimal images
   
-The `min` images are even smaller (100 MB - 250 MB when compressed). They contain the following:
+The `min` images are even smaller (150 MB - 200 MB when compressed). They contain the following:
   * minimal tools to install (but not build) additional packages
   * only those GAP packages needed to run GAP, to build manuals and to make coverage reports
   * most of the external dependencies used by these GAP packages

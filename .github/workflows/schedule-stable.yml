@@ -8,6 +8,7 @@ on:
 jobs:
   GAP-master:
     strategy:
+      fail-fast: false
       matrix:
         VERSION: ["4.10.0","4.10.1","4.10.2","4.11.0","4.11.1","4.12.0","4.12.1","4.12.2","4.13.0","4.13.1","4.14.0-beta1"]
         TYPE: ["min","slim","full"]

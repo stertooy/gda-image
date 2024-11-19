@@ -43,10 +43,9 @@ RUN <<EOF
     ./autogen.sh
     ./configure
     make
+    make clean-doc
     rm -rf .github benchmark cnf obj
 EOF
-
-
 
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
@@ -74,8 +73,10 @@ RUN <<EOF
 EOF
 
 # Build packages
-RUN cd opt/gap/pkg && \
+RUN <<EOF
+    cd opt/gap/pkg
     ../bin/BuildPackages.sh
+EOF
 
 # Delete temporary dependencies
 RUN <<EOF

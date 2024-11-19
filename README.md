@@ -19,6 +19,7 @@ The images follow a naming schema of VERSION-TYPE, where VERSION is any of the f
   - `4.14.0-beta-1`
   - `master`
   - `tex`
+
 and TYPE is any of the following:
   - `min`
   - `slim`

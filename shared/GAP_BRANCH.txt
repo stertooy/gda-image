@@ -1,7 +1,0 @@
-4.9=stable-4.9
-4.10=stable-4.10
-4.11=stable-4.11
-4.12=stable-4.12
-4.13=stable-4.13
-master=master
-tex=master

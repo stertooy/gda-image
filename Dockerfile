@@ -7,9 +7,9 @@ FROM {{BASE_IMAGE}} as build
 
 ARG GAP_HOME
 ARG GAP_ROOT
-ENV GAP_BRANCH="{{GAP_BRANCH}}"
-ENV GAP_PACKAGES="{{GAP_PACKAGES}}"
-ENV GAP_PKGS_URL="{{GAP_PKGS_URL}}"
+ENV VERSION="{{VERSION}}"
+ENV PACKAGE_LIST="{{PACKAGE_LIST}}"
+ENV PACKAGE_MODE="{{PACKAGE_MODE}}"
 ENV TEMP_DEPS="{{TEMP_DEPS}}"
 ENV PERM_DEPS="{{PERM_DEPS}}"
 
@@ -25,7 +25,11 @@ EOF
 # Download GAP
 RUN <<EOF
     cd /tmp
-    wget -q https://github.com/gap-system/gap/archive/${GAP_BRANCH}.tar.gz -O gap.tar.gz
+    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
+        wget -q https://github.com/gap-system/gap/archive/master.tar.gz -O gap.tar.gz
+    else
+        wget -q https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz -O gap.tar.gz
+    fi
     tar -xzf gap.tar.gz
     rm -rf gap.tar.gz
     mv gap* ${GAP_HOME}
@@ -44,17 +48,27 @@ EOF
 
 
 
-# Download packages
+# Download packages if necessary, remove unwanted ones
 RUN <<EOF
-    mkdir ${GAP_HOME}/pkg
-    cd ${GAP_HOME}/pkg
-    wget -q ${GAP_PKGS_URL} -O packages.tar.gz
-    tar -xzf packages.tar.gz
-    rm packages.tar.gz
+    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
+        mkdir ${GAP_HOME}/pkg
+        cd ${GAP_HOME}/pkg
+        wget -q https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz
+        tar -xzf packages.tar.gz
+        rm packages.tar.gz
+    else
+        cd ${GAP_HOME}/pkg
+    fi
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        if ! grep -Fwq "$pkgBase" <<< "${GAP_PACKAGES}"; then
-            rm -rf $pkg
+        if [ "${PACKAGE_MODE}" = "delete" ]; then
+            if grep -Fwq "$pkgBase" <<< "${PACKAGE_LIST}"; then
+                rm -rf $pkg
+            fi
+        else
+            if ! grep -Fwq "$pkgBase" <<< "${PACKAGE_LIST}"; then
+              rm -rf $pkg
+            fi
         fi
     done
 EOF

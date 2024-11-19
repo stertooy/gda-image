@@ -1,0 +1,19 @@
+name: "Publish GAP Docker images using master branch (scheduled)"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 5 * * *'
+
+jobs:
+  GAP-master:
+    strategy:
+      matrix:
+        VERSION: ["master","tex"]
+        TYPE: ["min","slim","full"]
+    uses: stertooy/gda-image/.github/workflows/publish-image.yml@dev
+    secrets: inherit
+    with:
+      VERSION: ${{ matrix.VERSION }}
+      TYPE: ${{ matrix.TYPE }}

@@ -11,7 +11,6 @@ cryst
 crystcat
 ctbllib
 curlinterface
-cvec
 factint
 fga
 forms
@@ -27,11 +26,11 @@ primgrp
 profiling
 radiroot
 recog
-recogbase
 resclasses
 smallgrp
 sophus
 spinsym
+standardff
 tomlib
 transgrp
 utils

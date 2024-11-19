@@ -35,7 +35,7 @@ Each image is built on an LTS version of Ubuntu that was released around the sam
 
 ### Full images
 
-The `full` images are rather large (500 MB - 1GB+ when compressed). They contain the following:
+The `full` images are rather large (600 MB - 1.2GB when compressed). They contain the following:
   * basic tools to install and build additional packages
   * all GAP packages that GAP is distributed with, except for packages that are defunct, withdrawn, or do not work in a standard GAP session
   * most of the external dependencies used by these GAP packages
@@ -49,7 +49,7 @@ The `slim` images are much smaller (250 MB - 350 MB when compressed). They conta
 
 ### Minimal images
   
-The `min` images are even smaller (150 MB - 200 MB when compressed). They contain the following:
+The `min` images are even smaller (130 MB - 200 MB when compressed). They contain the following:
   * minimal tools to install (but not build) additional packages
   * only those GAP packages needed to run GAP, to build manuals and to make coverage reports
   * most of the external dependencies used by these GAP packages

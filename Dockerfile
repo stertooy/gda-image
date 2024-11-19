@@ -25,7 +25,7 @@ EOF
 # Download GAP
 RUN <<EOF
     cd /tmp
-    if [ "${VERSION}" -eq "master" ] || [ "${VERSION}" -eq "tex" ]; then
+    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
         wget -q https://github.com/gap-system/gap/archive/master.tar.gz -O gap.tar.gz
     else
         wget -q https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz -O gap.tar.gz
@@ -50,7 +50,7 @@ EOF
 
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
-    if [ "${VERSION}" -eq "master" ] || [ "${VERSION}" -eq "tex" ]; then
+    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
         mkdir ${GAP_HOME}/pkg
         cd ${GAP_HOME}/pkg
         wget -q https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz
@@ -61,7 +61,7 @@ RUN <<EOF
     fi
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        if [ "${PACKAGE_MODE}" -eq "delete" ]; then
+        if [ "${PACKAGE_MODE}" = "delete" ]; then
             if grep -Fwq "$pkgBase" <<< "${PACKAGE_LIST}"; then
                 rm -rf $pkg
             fi

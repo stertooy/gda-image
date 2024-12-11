@@ -43,7 +43,9 @@ RUN <<EOF
     ./autogen.sh
     ./configure
     make
-    make clean-doc
+    if [ "${VERSION}" != "tex" ]; then
+        make clean-doc
+    fi
     rm -rf .github benchmark cnf obj
 EOF
 

@@ -42,7 +42,7 @@ RUN <<EOF
     cd ${GAP_HOME}
     ./autogen.sh
     ./configure
-    make
+    make -j3
     if [ "${VERSION}" != "tex" ]; then
         make clean-doc
     fi
@@ -77,7 +77,7 @@ EOF
 # Build packages
 RUN <<EOF
     cd opt/gap/pkg
-    ../bin/BuildPackages.sh
+    ../bin/BuildPackages.sh --parallel
 EOF
 
 # Delete temporary dependencies

@@ -77,7 +77,7 @@ EOF
 # Build packages
 RUN <<EOF
     cd opt/gap/pkg
-    ../bin/BuildPackages.sh --parallel
+    ../bin/BuildPackages.sh
 EOF
 
 # Delete temporary dependencies
@@ -101,6 +101,6 @@ COPY --from=build / /
 ARG GAP_HOME
 ENV GAP_HOME ${GAP_HOME}
 ARG GAP_ROOT
-ENV GAPROOT ${GAP_ROOT}
+ENV GAP_ROOT ${GAP_ROOT}
 
 CMD ["bash"]

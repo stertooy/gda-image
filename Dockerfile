@@ -46,7 +46,7 @@ RUN <<EOF
     if [ "${VERSION}" != "tex" ]; then
         make clean-doc
     fi
-    rm -rf .github benchmark cnf obj
+    rm -rf .github benchmark obj
 EOF
 
 # Download packages if necessary, remove unwanted ones

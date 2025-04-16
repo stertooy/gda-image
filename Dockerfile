@@ -34,7 +34,7 @@ RUN <<EOF
     rm -rf gap.tar.gz
     mv gap* ${GAP_HOME}
     cd ${GAP_HOME}
-    rm -rf dev extern hpcgap
+    rm -rf extern .github
 EOF
 
 # Build GAP
@@ -46,7 +46,6 @@ RUN <<EOF
     if [ "${VERSION}" != "tex" ]; then
         make clean-doc
     fi
-    rm -rf .github benchmark obj
 EOF
 
 # Download packages if necessary, remove unwanted ones

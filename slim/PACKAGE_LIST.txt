@@ -20,6 +20,7 @@ io
 irredsol
 laguna
 orb
+packagemanager
 polenta
 polycyclic
 primgrp

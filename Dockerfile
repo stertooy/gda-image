@@ -45,6 +45,8 @@ RUN <<EOF
     make -j3
     if [ "${VERSION}" != "tex" ]; then
         make clean-doc
+    else
+        make html || :
     fi
 EOF
 

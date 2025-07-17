@@ -98,9 +98,6 @@ COPY --from=build / /
 
 # Make GAP_HOME and GAP_ROOT available in container
 ARG GAP_HOME
-ENV GAP_HOME ${GAP_HOME}
-ARG GAP_ROOT
-ENV GAP_ROOT ${GAP_ROOT}
 ENV GAPROOT ${GAP_HOME}
 
 CMD ["bash"]

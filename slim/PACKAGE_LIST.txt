@@ -18,6 +18,7 @@ gapdoc
 genss
 io
 irredsol
+json
 laguna
 orb
 packagemanager

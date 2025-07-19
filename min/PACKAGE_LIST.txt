@@ -1,6 +1,7 @@
 autodoc
 gapdoc
 io
+json
 primgrp
 profiling
 smallgrp

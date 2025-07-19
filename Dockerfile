@@ -43,11 +43,6 @@ RUN <<EOF
     ./autogen.sh
     ./configure
     make -j3
-    if [ "${VERSION}" != "tex" ]; then
-        make clean-doc
-    else
-        make html || :
-    fi
 EOF
 
 # Download packages if necessary, remove unwanted ones
@@ -75,16 +70,18 @@ RUN <<EOF
     done
 EOF
 
+# Build GAP docs
+RUN <<EOF
+    if [ "${VERSION}" == "tex" ]; then
+    cd ${GAP_HOME}
+        make html || :
+    fi
+EOF
+
 # Build packages
 RUN <<EOF
     cd opt/gap/pkg
     ../bin/BuildPackages.sh
-EOF
-
-# Delete temporary dependencies
-RUN <<EOF
-    apt-get autoremove --purge --yes ${TEMP_DEPS}
-    rm -rf /var/lib/apt/lists/*
 EOF
 
 # Prepare for Github Actions use

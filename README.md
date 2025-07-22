@@ -38,20 +38,20 @@ The following types of images are available:
 ### Full images
 
 The `full` images are rather large (600 MB - 1.2GB when compressed). They contain the following:
-  * basic tools to install and build additional packages
-  * all GAP packages that GAP is distributed with, except for packages that are defunct, withdrawn, or do not work in a standard GAP session
+  * basic tools to install additional packages
+  * all GAP packages that GAP is distributed with
   * most of the external dependencies used by these GAP packages
   
 ### Slim images
   
 The `slim` images are much smaller (250 MB - 350 MB when compressed). They contain the following:
-  * minimal tools to install (but not build) additional packages
-  * the GAP packages that GAP loads by default, as well as those needed to build manuals and to make coverage reports
+  * minimal tools to install additional packages
+  * the GAP packages that GAP loads by default, as well as those needed for GAP's GitHub actions
   * most of the external dependencies used by these GAP packages
 
 ### Minimal images
   
 The `min` images are even smaller (130 MB - 200 MB when compressed). They contain the following:
-  * minimal tools to install (but not build) additional packages
-  * only those GAP packages needed to run GAP, to build manuals and to make coverage reports
+  * minimal tools to install additional packages
+  * only those GAP packages needed to run GAP, as well as those needed for GAP's GitHub actions
   * most of the external dependencies used by these GAP packages

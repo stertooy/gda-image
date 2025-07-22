@@ -49,9 +49,13 @@ RUN <<EOF
     cd ${GAPROOT}/pkg
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
+        echo "Now checking package $pkgBase"
         if [[ -z "${PACKAGES}" ]]; then
             if ! grep -Fwq "$pkgBase" <<< "${PACKAGES}"; then
+              echo "Removing package $pkgBase"
               rm -rf $pkg
+            else
+              echo "Keeping package $pkgBase"
             fi
         fi
     done

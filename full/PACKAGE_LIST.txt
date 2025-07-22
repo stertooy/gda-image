@@ -1,4 +1,0 @@
-itc
-polymakeinterface
-qaos
-xgap

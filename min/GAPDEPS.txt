@@ -10,4 +10,3 @@
 4.13.1=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libgmp-dev libtool netbase perl sudo wget zlib1g-dev
 4.14.0=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libgmp-dev libtool netbase perl sudo wget zlib1g-dev
 master=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libgmp-dev libtool netbase perl sudo wget zlib1g-dev
-tex=   autoconf build-essential ca-certificates curl git gpg gpg-agent jq libgmp-dev libtool netbase perl sudo wget zlib1g-dev texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended

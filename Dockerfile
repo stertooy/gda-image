@@ -1,14 +1,16 @@
 
 ARG BASE_IMAGE=ubuntu:latest
+ARG GAPROOT="/opt/gap"
 
-FROM ${BASE_IMAGE} AS build
+FROM $BASE_IMAGE AS build
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-ENV GAPROOT="/opt/gap"
+ARG GAPROOT
 ARG GAPDEPS
 ARG VERSION="master"
 ARG PACKAGES
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV GAPROOT=$GAPROOT
 
 SHELL ["/bin/bash", "-c"]
 
@@ -21,15 +23,13 @@ EOF
 
 # Download GAP
 RUN <<EOF
-    if [ "${VERSION}" = "master" ]; then
+    if [ "$VERSION" = "master" ]; then
         GAP_URL="https://github.com/gap-system/gap/archive/master.tar.gz"
     else
-        GAP_URL="https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz"
+        GAP_URL="https://github.com/gap-system/gap/releases/download/v$VERSION/gap-$VERSION.tar.gz"
     fi
-    echo $GAP_URL
-    wget -O - $GAP_URL | tar -xzf - --one-top-level=${GAPROOT} --strip-components=1
-    cd ${GAPROOT}
-    echo ls -a
+    wget -O - $GAP_URL | tar -xzf - --one-top-level=$GAPROOT --strip-components=1
+    cd $GAPROOT
     rm -rf extern .github
 EOF
 
@@ -43,29 +43,27 @@ EOF
 
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
-    if [ "${VERSION}" = "master" ]; then
-        wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
+    if [ "$VERSION" = "master" ]; then
+        wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=$GAPROOT/pkg
     fi
-    cd ${GAPROOT}/pkg
-    echo "List of packages: ${PACKAGES}"
-    for pkg in */; do
-        pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        echo "Now checking package $pkgBase"
-        if [[ -n "${PACKAGES}" ]]; then
-            if ! grep -Fwq "$pkgBase" <<< "${PACKAGES}"; then
-              echo "Removing package $pkgBase"
-              rm -rf $pkg
-            else
-              echo "Keeping package $pkgBase"
-            fi
-        fi
-    done
+    cd $GAPROOT/pkg
+    if [[ -n "$PACKAGES" ]]; then
+        for pkg in */; do
+            pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
+                if ! grep -Fwq "$pkgBase" <<< "$PACKAGES"; then
+                  echo "Removing package $pkgBase"
+                  rm -rf $pkg
+                else
+                  echo "Keeping package $pkgBase"
+                fi
+        done
+    fi
 EOF
 
 # Build GAP docs
 RUN <<EOF
-    if [ "${VERSION}" == "master" ]; then
-        cd ${GAPROOT}
+    if [ "$VERSION" == "master" ]; then
+        cd $GAPROOT
         make html || :
     fi
 EOF
@@ -78,13 +76,18 @@ EOF
 
 # Add GAP to PATH
 RUN <<EOF
-    printf '#!/bin/bash\n%s/gap "$@"\n' ${GAPROOT} > /usr/local/bin/gap
+    printf '#!/bin/bash\n%s/gap "$@"\n' $GAPROOT > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
 EOF
 
 # Squash
 FROM scratch
 COPY --from=build / /
+
+ARG GAPROOT
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV GAPROOT=$GAPROOT
 
 RUN <<EOF
     echo $GAPROOT

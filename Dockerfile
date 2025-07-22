@@ -47,6 +47,7 @@ RUN <<EOF
         wget -qO- https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
     fi
     cd ${GAPROOT}/pkg
+    echo "List of packages: ${PACKAGES}"
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
         echo "Now checking package $pkgBase"
@@ -70,10 +71,10 @@ RUN <<EOF
 EOF
 
 # Build packages
-RUN <<EOF
-    cd ${GAPROOT}/pkg
-    ../bin/BuildPackages.sh
-EOF
+#RUN <<EOF
+#    cd ${GAPROOT}/pkg
+#    ../bin/BuildPackages.sh
+#EOF
 
 # Add GAP to PATH
 RUN <<EOF

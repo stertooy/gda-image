@@ -32,26 +32,20 @@ Each image is built on an LTS version of Ubuntu that was released around the sam
 The following types of images are available:
   - `full`
   - `slim`
-  - `min`
 
 ### Full images
 
-The `full` images are rather large (600 MB - 1.2GB when compressed). They contain the following:
-  * basic tools to install additional packages
+The `full` images are rather large (2GB - 3GB when compressed). They contain the following:
+  * tools to install additional packages
+  * tools to run GitHub actions
   * a basic texlive installation to create package documentation
   * all GAP packages that GAP is distributed with
   * most of the external dependencies used by these GAP packages
   
 ### Slim images
   
-The `slim` images are much smaller (250 MB - 350 MB when compressed). They contain the following:
-  * minimal tools to install additional packages
+The `slim` images are smaller (~1GB when compressed). They contain the following:
+  * tools to install additional packages
+  * tools to run GitHub actions
   * the GAP packages that GAP loads by default, as well as those needed for GAP's GitHub actions
-  * most of the external dependencies used by these GAP packages
-
-### Minimal images
-  
-The `min` images are even smaller (130 MB - 200 MB when compressed). They contain the following:
-  * minimal tools to install additional packages
-  * only those GAP packages needed to run GAP, as well as those needed for GAP's GitHub actions
   * most of the external dependencies used by these GAP packages

@@ -73,7 +73,7 @@ RUN <<EOF
     cd ${GAPROOT}/pkg
     ../bin/BuildPackages.sh
     echo "Showing output log of BuildPackages.sh"
-    cat log/output.log
+    cat log/fail.log
 EOF
 
 # Add GAP to PATH

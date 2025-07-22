@@ -2,6 +2,7 @@ autodoc
 gapdoc
 io
 json
+packagemanager
 primgrp
 profiling
 smallgrp

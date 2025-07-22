@@ -40,14 +40,17 @@ jobs:
         run: |
           # Add BASE_IMAGE
           BASE_IMAGE=$(grep "${{ inputs.VERSION }}=" BASE_IMAGE.txt | cut -d'=' -f2 | xargs)
+          echo $BASE_IMAGE
           echo "BASE_IMAGE=$BASE_IMAGE" >> "$GITHUB_ENV"
           
           # Add PACKAGES
           PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/PACKAGES.txt || :)
+          echo $PACKAGES
           echo "PACKAGES=$PACKAGES" >> "$GITHUB_ENV"
           
           # Add GAPDEPS
           TEMP_DEPS=$(grep "${{ inputs.VERSION }}=" ${{ inputs.TYPE }}/GAPDEPS.txt | cut -d'=' -f2)
+          echo $GAPDEPS
           echo "GAPDEPS=$GAPDEPS" >> "$GITHUB_ENV"
           
       - name: Log in to Docker Hub

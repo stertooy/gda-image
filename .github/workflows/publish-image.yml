@@ -10,7 +10,7 @@ on:
       TYPE:
         required: true
         type: choice
-        options: ["min","slim","full"]
+        options: ["slim","full"]
   workflow_call:
     inputs:
       VERSION:
@@ -88,5 +88,4 @@ jobs:
             VERSION=${{ inputs.VERSION }}
             PACKAGES=${{ env.PACKAGES }}
             GAPDEPS=${{ env.GAPDEPS }}
-            
             

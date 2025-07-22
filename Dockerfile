@@ -21,7 +21,7 @@ EOF
 
 # Download GAP
 RUN <<EOF
-    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
+    if [ "${VERSION}" = "master" ]; then
         GAP_URL="https://github.com/gap-system/gap/archive/master.tar.gz"
     else
         GAP_URL="https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz"
@@ -43,7 +43,7 @@ EOF
 
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
-    if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
+    if [ "${VERSION}" = "master" ]; then
         wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
     fi
     cd ${GAPROOT}/pkg
@@ -64,7 +64,7 @@ EOF
 
 # Build GAP docs
 RUN <<EOF
-    if [ "${VERSION}" == "tex" ]; then
+    if [ "${VERSION}" == "master" ]; then
         cd ${GAPROOT}
         make html || :
     fi

@@ -27,7 +27,7 @@ RUN <<EOF
         GAP_URL="https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz"
     fi
     echo $GAP_URL
-    wget -qO- $GAP_URL | tar xzf - --one-top-level=${GAPROOT}
+    wget -O - $GAP_URL | tar -xzf - --one-top-level=${GAPROOT} --strip-components=1
     cd ${GAPROOT}
     echo ls -a
     rm -rf extern .github

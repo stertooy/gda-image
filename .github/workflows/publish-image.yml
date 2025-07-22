@@ -81,6 +81,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
+            BASE_IMAGE=${{ env.BASE_IMAGE }}
             VERSION=${{ inputs.VERSION }}
             PACKAGES=${{ env.PACKAGES }}
             GAPDEPS=${{ env.GAPDEPS }}

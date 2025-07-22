@@ -44,7 +44,7 @@ EOF
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
     if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
-        wget -qO- https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
+        wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
     fi
     cd ${GAPROOT}/pkg
     echo "List of packages: ${PACKAGES}"

@@ -1,7 +1,7 @@
 
 ARG BASE_IMAGE
 
-FROM ${BASE_IMAGE} as build
+FROM ${BASE_IMAGE} AS build
 
 ENV DEBIAN_FRONTEND noninteractive
 

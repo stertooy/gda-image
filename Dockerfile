@@ -69,10 +69,12 @@ RUN <<EOF
 EOF
 
 # Build packages
-#RUN <<EOF
-#    cd ${GAPROOT}/pkg
-#    ../bin/BuildPackages.sh
-#EOF
+RUN <<EOF
+    cd ${GAPROOT}/pkg
+    ../bin/BuildPackages.sh
+    echo "Showing output log of BuildPackages.sh"
+    cat log/output.log
+EOF
 
 # Add GAP to PATH
 RUN <<EOF

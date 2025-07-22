@@ -39,11 +39,11 @@ jobs:
         shell: bash
         run: |
           # Add BASE_IMAGE
-          BASE_IMAGE=$(grep "${{ inputs.VERSION }}=" BASE_IMAGE.txt | cut -d'=' -f2)
+          BASE_IMAGE=$(grep "${{ inputs.VERSION }}=" BASE_IMAGE.txt | cut -d'=' -f2 | xargs)
           echo "BASE_IMAGE=$BASE_IMAGE" >> "$GITHUB_ENV"
           
           # Add PACKAGES
-          PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/PACKAGES.txt)
+          PACKAGES=$(tr "\n" " " < ${{ inputs.TYPE }}/PACKAGES.txt || :)
           echo "PACKAGES=$PACKAGES" >> "$GITHUB_ENV"
           
           # Add GAPDEPS

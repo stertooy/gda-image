@@ -1,5 +1,5 @@
 
-ARG BASE_IMAGE
+ARG BASE_IMAGE=ubuntu:latest
 
 FROM ${BASE_IMAGE} AS build
 
@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 ENV GAPROOT="/opt/gap"
 ARG GAPDEPS
-ARG VERSION
+ARG VERSION="master"
 ARG PACKAGES
 
 SHELL ["/bin/bash", "-c"]

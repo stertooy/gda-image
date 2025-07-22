@@ -3,7 +3,7 @@ ARG BASE_IMAGE=ubuntu:latest
 
 FROM ${BASE_IMAGE} AS build
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 ENV GAPROOT="/opt/gap"
 ARG GAPDEPS
@@ -26,8 +26,10 @@ RUN <<EOF
     else
         GAP_URL="https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz"
     fi
-    wget -qO- $GAP_URL | tar -xzf - --one-top-level=${GAPROOT}
+    echo $GAP_URL
+    wget -qO- $GAP_URL | tar xzf - --one-top-level=${GAPROOT}
     cd ${GAPROOT}
+    echo ls -a
     rm -rf extern .github
 EOF
 

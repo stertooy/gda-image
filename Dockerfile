@@ -51,7 +51,7 @@ RUN <<EOF
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
         echo "Now checking package $pkgBase"
-        if [[ -z "${PACKAGES}" ]]; then
+        if [[ -n "${PACKAGES}" ]]; then
             if ! grep -Fwq "$pkgBase" <<< "${PACKAGES}"; then
               echo "Removing package $pkgBase"
               rm -rf $pkg

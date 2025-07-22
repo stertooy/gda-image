@@ -35,7 +35,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
-      - name: Compose Dockerfile
+      - name: Setup build-args
         shell: bash
         run: |
           # Add BASE_IMAGE
@@ -49,7 +49,7 @@ jobs:
           echo "PACKAGES=$PACKAGES" >> "$GITHUB_ENV"
           
           # Add GAPDEPS
-          TEMP_DEPS=$(grep "${{ inputs.VERSION }}=" ${{ inputs.TYPE }}/GAPDEPS.txt | cut -d'=' -f2)
+          GAPDEPS=$(grep "${{ inputs.VERSION }}=" ${{ inputs.TYPE }}/GAPDEPS.txt | cut -d'=' -f2)
           echo $GAPDEPS
           echo "GAPDEPS=$GAPDEPS" >> "$GITHUB_ENV"
           

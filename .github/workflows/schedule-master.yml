@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        VERSION: ["master","tex"]
+        VERSION: ["master"]
         TYPE: ["min","slim","full"]
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit

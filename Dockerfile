@@ -1,17 +1,14 @@
-# syntax=docker/dockerfile:1.3-labs
 
-ARG GAP_HOME={{GAP_HOME}}
-ARG GAP_ROOT={{GAP_ROOT}}
+ARG BASE_IMAGE
 
-FROM {{BASE_IMAGE}} as build
+FROM ${BASE_IMAGE} as build
 
-ARG GAP_HOME
-ARG GAP_ROOT
-ENV VERSION="{{VERSION}}"
-ENV PACKAGE_LIST="{{PACKAGE_LIST}}"
-ENV PACKAGE_MODE="{{PACKAGE_MODE}}"
-ENV TEMP_DEPS="{{TEMP_DEPS}}"
-ENV PERM_DEPS="{{PERM_DEPS}}"
+ENV DEBIAN_FRONTEND noninteractive
+
+ENV GAPROOT="/opt/gap"
+ARG GAPDEPS
+ARG VERSION
+ARG PACKAGES
 
 SHELL ["/bin/bash", "-c"]
 
@@ -19,27 +16,24 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
     apt-get update
     apt-get upgrade --yes
-    apt-get install --yes --no-install-recommends ${TEMP_DEPS} ${PERM_DEPS}
+    apt-get install --yes --no-install-recommends ${GAPDEPS}
 EOF
 
 # Download GAP
 RUN <<EOF
-    cd /tmp
     if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
-        wget -q https://github.com/gap-system/gap/archive/master.tar.gz -O gap.tar.gz
+        GAP_URL="https://github.com/gap-system/gap/archive/master.tar.gz"
     else
-        wget -q https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz -O gap.tar.gz
+        GAP_URL="https://github.com/gap-system/gap/releases/download/v${VERSION}/gap-${VERSION}.tar.gz"
     fi
-    tar -xzf gap.tar.gz
-    rm -rf gap.tar.gz
-    mv gap* ${GAP_HOME}
-    cd ${GAP_HOME}
+    wget -qO- $GAP_URL | tar -xzf - --one-top-level=${GAPROOT}
+    cd ${GAPROOT}
     rm -rf extern .github
 EOF
 
 # Build GAP
 RUN <<EOF
-    cd ${GAP_HOME}
+    cd ${GAPROOT}
     ./autogen.sh
     ./configure
     make -j3
@@ -48,22 +42,13 @@ EOF
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
     if [ "${VERSION}" = "master" ] || [ "${VERSION}" = "tex" ]; then
-        mkdir ${GAP_HOME}/pkg
-        cd ${GAP_HOME}/pkg
-        wget -q https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz
-        tar -xzf packages.tar.gz
-        rm packages.tar.gz
-    else
-        cd ${GAP_HOME}/pkg
+        wget -qO- https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=${GAPROOT}/pkg
     fi
+    cd ${GAPROOT}/pkg
     for pkg in */; do
         pkgBase=$(echo $pkg | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z]*$//g')
-        if [ "${PACKAGE_MODE}" = "delete" ]; then
-            if grep -Fwq "$pkgBase" <<< "${PACKAGE_LIST}"; then
-                rm -rf $pkg
-            fi
-        else
-            if ! grep -Fwq "$pkgBase" <<< "${PACKAGE_LIST}"; then
+        if [[ -z "${PACKAGES}" ]]; then
+            if ! grep -Fwq "$pkgBase" <<< "${PACKAGES}"; then
               rm -rf $pkg
             fi
         fi
@@ -73,21 +58,20 @@ EOF
 # Build GAP docs
 RUN <<EOF
     if [ "${VERSION}" == "tex" ]; then
-    cd ${GAP_HOME}
+        cd ${GAPROOT}
         make html || :
     fi
 EOF
 
 # Build packages
 RUN <<EOF
-    cd opt/gap/pkg
+    cd ${GAPROOT}/pkg
     ../bin/BuildPackages.sh
 EOF
 
-# Prepare for Github Actions use
+# Add GAP to PATH
 RUN <<EOF
-    mkdir -p /tmp/gaproot/pkg
-    printf '#!/bin/bash\nLC_CTYPE=C.UTF-8 TERM="xterm" %s/gap -l "%s;" --quitonbreak "$@"\n' ${GAP_HOME} ${GAP_ROOT} > /usr/local/bin/gap
+    printf '#!/bin/bash\n%s/gap "$@"\n' ${GAPROOT} > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
 EOF
 
@@ -95,8 +79,9 @@ EOF
 FROM scratch
 COPY --from=build / /
 
-# Make GAP_HOME and GAP_ROOT available in container
-ARG GAP_HOME
-ENV GAPROOT ${GAP_HOME}
+RUN <<EOF
+    echo $GAPROOT
+    echo $DEBIAN_FRONTEND
+EOF
 
 CMD ["bash"]

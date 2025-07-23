@@ -7,9 +7,6 @@ The images follow a naming schema of VERSION-TYPE.
 ## Available versions
 
 The following versions of GAP are available:
-  - `4.10.0`
-  - `4.10.1`
-  - `4.10.2`
   - `4.11.0`
   - `4.11.1`
   - `4.12.0`
@@ -34,7 +31,7 @@ The following types of images are available:
 
 ### Full images
 
-The `full` images are rather large (2GB - 3GB when compressed). They contain the following:
+The `full` images are rather large (3GB - 5GB when compressed). They contain the following:
   * tools to install additional packages
   * tools to run GitHub actions
   * a basic texlive installation to create package documentation
@@ -43,7 +40,7 @@ The `full` images are rather large (2GB - 3GB when compressed). They contain the
   
 ### Slim images
   
-The `slim` images are smaller (~1GB when compressed). They contain the following:
+The `slim` images are smaller (1GB - 1.5GB when compressed). They contain the following:
   * tools to install additional packages
   * tools to run GitHub actions
   * the GAP packages that GAP loads by default, as well as those needed for GAP's GitHub actions

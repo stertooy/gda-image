@@ -1,8 +1,5 @@
-4.10.0=ubuntu:focal
-4.10.1=ubuntu:focal
-4.10.2=ubuntu:focal
-4.11.0=ubuntu:focal
-4.11.1=ubuntu:focal
+4.11.0=ubuntu:jammy
+4.11.1=ubuntu:jammy
 4.12.0=ubuntu:jammy
 4.12.1=ubuntu:jammy
 4.12.2=ubuntu:jammy

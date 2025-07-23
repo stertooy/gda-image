@@ -22,8 +22,7 @@ The following versions of GAP are available:
   - `master` (the current `master` branch of the GAP source code repository)
 
 Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP (or a newer LTS release if necessary):
-  - 20.04 for `4.10.0` -  `4.11.1`
-  - 22.04 for `4.12.0` - `4.12.2`
+  - 22.04 for `4.11.0` - `4.12.2`
   - 24.04 for `4.13.0` and later (including `master`)
 
 

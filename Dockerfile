@@ -78,8 +78,15 @@ EOF
 
 # Add GAP to PATH
 RUN <<EOF
-    printf '#!/bin/bash\n%s/gap "$@"\n' $GAPROOT > /usr/local/bin/gap
+    mkdir -p /tmp/gaproot/pkg/
+    echo -e '#!/bin/bash\n'"$EXEC"' -l "/tmp/gaproot;" "$@"\n' > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
+EOF
+
+# Make folder
+RUN <<EOF
+    mkdir -p /tmp/gaproot/pkg
+    
 EOF
 
 # Squash
@@ -90,10 +97,12 @@ ARG GAPROOT
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV GAPROOT=$GAPROOT
+ENV GAP="gap --quitonbreak"
 
 RUN <<EOF
     echo $GAPROOT
     echo $DEBIAN_FRONTEND
+    echo $GAP
 EOF
 
 CMD ["bash"]

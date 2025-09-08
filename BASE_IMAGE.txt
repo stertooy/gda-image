@@ -1,5 +1,3 @@
-4.11.0=ubuntu:jammy
-4.11.1=ubuntu:jammy
 4.12.0=ubuntu:jammy
 4.12.1=ubuntu:jammy
 4.12.2=ubuntu:jammy

@@ -71,7 +71,7 @@ EOF
 # Build packages
 RUN <<EOF
     cd ${GAPROOT}/pkg
-    ../bin/BuildPackages.sh --parallel
+    ../bin/BuildPackages.sh
     echo "Showing output log of BuildPackages.sh"
     cat log/fail.log
 EOF

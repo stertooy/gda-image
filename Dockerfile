@@ -79,7 +79,7 @@ EOF
 # Add GAP to PATH
 RUN <<EOF
     mkdir -p /tmp/gaproot/pkg/
-    echo -e '#!/bin/bash\n'"$EXEC"' -l "/tmp/gaproot;" "$@"\n' > /usr/local/bin/gap
+    echo -e '#!/bin/bash\n'"$GAPROOT"'/gap -l "/tmp/gaproot;" "$@"\n' > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
 EOF
 

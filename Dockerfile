@@ -38,7 +38,7 @@ RUN <<EOF
     cd ${GAPROOT}
     ./autogen.sh
     ./configure
-    make -j3
+    make -j$(nproc)
 EOF
 
 # Download packages if necessary, remove unwanted ones
@@ -71,7 +71,7 @@ EOF
 # Build packages
 RUN <<EOF
     cd ${GAPROOT}/pkg
-    ../bin/BuildPackages.sh
+    ../bin/BuildPackages.sh --parallel
     echo "Showing output log of BuildPackages.sh"
     cat log/fail.log
 EOF
@@ -81,12 +81,6 @@ RUN <<EOF
     mkdir -p /tmp/gaproot/pkg/
     echo -e '#!/bin/bash\n'"$GAPROOT"'/gap -l "/tmp/gaproot;" "$@"\n' > /usr/local/bin/gap
     chmod +x /usr/local/bin/gap
-EOF
-
-# Make folder
-RUN <<EOF
-    mkdir -p /tmp/gaproot/pkg
-    
 EOF
 
 # Squash

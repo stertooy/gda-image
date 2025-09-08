@@ -1,4 +1,3 @@
-4.11.0=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libcurl4-openssl-dev libgmp-dev libncurses-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
 4.11.1=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libcurl4-openssl-dev libgmp-dev libncurses-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
 4.12.0=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libcurl4-openssl-dev libgmp-dev libncurses-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
 4.12.1=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libcurl4-openssl-dev libgmp-dev libncurses-dev libtool netbase pari-gp perl sudo wget zlib1g-dev

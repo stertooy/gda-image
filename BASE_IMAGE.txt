@@ -4,5 +4,5 @@
 4.13.0=ubuntu:noble
 4.13.1=ubuntu:noble
 4.14.0=ubuntu:noble
-4.15.0-beta3=ubuntu:noble
+4.15.0=ubuntu:noble
 master=ubuntu:noble

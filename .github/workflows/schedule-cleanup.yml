@@ -1,0 +1,17 @@
+name: "Publish GAP Docker images using master branch (scheduled)"
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  schedule:
+    - cron: '37 8 * * *'
+
+jobs:
+  delete-untagged-images:
+    name: Delete Untagged Images
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - uses: dataaxiom/ghcr-cleanup-action@v1
+      

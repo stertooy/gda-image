@@ -1,4 +1,4 @@
-name: "Publish GAP Docker images using master branch (scheduled)"
+name: "Cleanup untagged packages (scheduled)"
 
 on:
   workflow_call:

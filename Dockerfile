@@ -83,6 +83,10 @@ RUN <<EOF
     chmod +x /usr/local/bin/gap
 EOF
 
+# Add gaproot.sh
+COPY gaproot.sh /etc/profile.d/gaproot.sh
+RUN chmod +x /etc/profile.d/gaproot.sh
+
 # Squash
 FROM scratch
 COPY --from=build / /

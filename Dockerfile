@@ -83,6 +83,10 @@ RUN <<EOF
     chmod +x /usr/local/bin/gap
 EOF
 
+# Add gaproot.sh
+COPY gaproot.sh /gaproot.sh
+RUN chmod +x /gaproot.sh
+
 # Squash
 FROM scratch
 COPY --from=build / /
@@ -93,10 +97,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV GAPROOT=$GAPROOT
 ENV GAP="gap --quitonbreak"
 
-RUN <<EOF
-    echo $GAPROOT
-    echo $DEBIAN_FRONTEND
-    echo $GAP
-EOF
+ENTRYPOINT ["/gaproot.sh"]
 
 CMD ["bash"]

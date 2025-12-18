@@ -84,8 +84,8 @@ RUN <<EOF
 EOF
 
 # Add gaproot.sh
-COPY gaproot.sh /etc/profile.d/gaproot.sh
-RUN chmod +x /etc/profile.d/gaproot.sh
+COPY gaproot.sh /gaproot.sh
+RUN chmod +x /gaproot.sh
 
 # Squash
 FROM scratch
@@ -97,4 +97,5 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV GAPROOT=$GAPROOT
 ENV GAP="gap --quitonbreak"
 
+ENTRYPOINT ["/gaproot.sh"]
 CMD ["bash"]

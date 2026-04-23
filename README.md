@@ -20,7 +20,8 @@ The following versions of GAP are available:
 
 Each image is built on an LTS version of Ubuntu that was released around the same time as that particular version of GAP (or a newer LTS release if necessary):
   - 22.04 for `4.12.0` - `4.12.2`
-  - 24.04 for `4.13.0` and later (including `master`)
+  - 24.04 for `4.13.0` - `4.15.1`
+  - 26.04 for `master`
 
 
 ## Available types

@@ -6,4 +6,5 @@
 4.14.0=ubuntu:noble
 4.15.0=ubuntu:noble
 4.15.1=ubuntu:noble
+4.16.0-beta1=ubuntu:resolute
 master=ubuntu:resolute

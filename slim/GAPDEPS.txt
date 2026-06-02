@@ -7,4 +7,4 @@
 4.15.0=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libarchive-tools libcurl4-openssl-dev libgmp-dev libncurses-dev libreadline-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
 4.15.1=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libarchive-tools libcurl4-openssl-dev libgmp-dev libncurses-dev libreadline-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
 4.16.0=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libarchive-tools libcurl4-openssl-dev libgmp-dev libncurses-dev libreadline-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
-master=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libarchive-tools libcurl4-openssl-dev libgmp-dev libncurses-dev libreadline-dev libtool netbase pari-gp perl sudo wget zlib1g-dev
+devel=autoconf build-essential ca-certificates curl git gpg gpg-agent jq libarchive-tools libcurl4-openssl-dev libgmp-dev libncurses-dev libreadline-dev libtool netbase pari-gp perl sudo wget zlib1g-dev

@@ -1,4 +1,4 @@
-name: "Publish GAP Docker images using master branch (scheduled)"
+name: "Publish GAP Docker images using development branch (scheduled)"
 
 on:
   workflow_call:
@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        VERSION: ["master"]
+        VERSION: ["devel"]
         TYPE: ["slim","full"]
     uses: stertooy/gda-image/.github/workflows/publish-image.yml@main
     secrets: inherit

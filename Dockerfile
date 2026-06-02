@@ -6,7 +6,7 @@ FROM $BASE_IMAGE AS build
 
 ARG GAPROOT
 ARG GAPDEPS
-ARG VERSION="master"
+ARG VERSION="devel"
 ARG PACKAGES
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -23,7 +23,7 @@ EOF
 
 # Download GAP
 RUN <<EOF
-    if [ "$VERSION" = "master" ]; then
+    if [ "$VERSION" = "devel" ]; then
         GAP_URL="https://github.com/gap-system/gap/archive/master.tar.gz"
     else
         GAP_URL="https://github.com/gap-system/gap/releases/download/v$VERSION/gap-$VERSION.tar.gz"
@@ -43,7 +43,7 @@ EOF
 
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
-    if [ "$VERSION" = "master" ]; then
+    if [ "$VERSION" = "devel" ]; then
         wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=$GAPROOT/pkg
     fi
     cd $GAPROOT/pkg
@@ -62,7 +62,7 @@ EOF
 
 # Build GAP docs
 RUN <<EOF
-    if [ "$VERSION" == "master" ]; then
+    if [ "$VERSION" == "devel" ]; then
         cd $GAPROOT
         make html || :
     fi

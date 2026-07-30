@@ -24,7 +24,7 @@ EOF
 # Download GAP
 RUN <<EOF
     if [ "$VERSION" = "devel" ]; then
-        GAP_URL="https://github.com/gap-system/gap/archive/master.tar.gz"
+        GAP_URL="https://github.com/gap-system/gap/archive/refs/heads/master.tar.gz"
     else
         GAP_URL="https://github.com/gap-system/gap/releases/download/v$VERSION/gap-$VERSION.tar.gz"
     fi

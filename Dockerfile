@@ -45,7 +45,8 @@ EOF
 # Download packages if necessary, remove unwanted ones
 RUN <<EOF
     if [ "$VERSION" = "devel" ]; then
-        wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --one-top-level=$GAPROOT/pkg
+        mkdir $GAPROOT/pkg
+        wget -O - https://github.com/gap-system/PackageDistro/releases/download/latest/packages.tar.gz | tar -xzf - --directory=$GAPROOT/pkg
     fi
     cd $GAPROOT/pkg
     if [[ -n "$PACKAGES" ]]; then

@@ -7,4 +7,5 @@
 4.15.0=ubuntu:noble
 4.15.1=ubuntu:noble
 4.16.0=ubuntu:resolute
+4.16.1-beta1=ubuntu:resolute
 devel=ubuntu:resolute

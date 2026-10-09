@@ -89,6 +89,11 @@ EOF
 FROM scratch
 COPY --from=build / /
 
+RUN <<EOF
+    echo 'APT::Get::Assume-Yes "true";' > /etc/apt/apt.conf.d/99-ci-noninteractive
+    echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+EOF
+
 ARG GAPROOT
 
 ENV DEBIAN_FRONTEND=noninteractive
